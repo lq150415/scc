@@ -39,4 +39,17 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('usuarios','UsuariosController@index');
 	Route::resource('usuarios','UsuariosController');
 	Route::post('registrarusuario','UsuariosController@store');
+	Route::get('prestamo','PrestamoController@index');
+	Route::resource('prestamo','PrestamoController');
+	Route::post('devolucion','PrestamoController@devolucion');
+	Route::post('registrarprestamos','PrestamoController@store');
+	Route::post('test-email','EnviarController@enviar');
+	Route::get('email','EnviarController@index');
+	Route::get('materialprog','MaterialController@index');
+	Route::get('materialsumma','MaterialController@index2');
+	Route::resource('email','EnviarController');
+	Route::post('registrarcat','MaterialController@registrarcategoria');
+	Route::get('admincat',['as'=>'admincat','uses'=>'AdministrarController@indexcat']);
+	Route::post('modifcat','AdministrarController@modifcat');
+	Route::post('elicat','AdministrarController@elicat');
 });

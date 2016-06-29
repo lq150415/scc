@@ -1,7 +1,7 @@
 @extends ('layout')
 	@section ('cuerpo')
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="<?php echo asset('js/highcharts.js')?>"></script> 
+<script src="<?php echo asset('js/exportinghigh.js')?>"></script>
 <div id="report" style=" padding-left:5%; padding-top:40px; width:80%;" class="table-responsive"></div>
   <div class = "modal-footer">
             <a href="grafcol" class = "btn btn-success btn-lg" >
