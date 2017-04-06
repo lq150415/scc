@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use sccventas\Procedencia;
 use sccventas\Genero;
 use sccventas\Archivo;
+use sccventas\Material;
+use sccventas\Articulo;
 class MaterialController extends Controller
 {
     /**
@@ -19,10 +21,12 @@ class MaterialController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $archivo=Archivo::get();
+    {
+        $categorias=Categoria::get();
+        $archivo=Archivo::get();
         $procedencias=Procedencia::get();
         $genero=Genero::get();
-        return view('materialprog')->with('procedencias',$procedencias)->with('archivos',$archivo)->with('generos',$genero);
+        return view('materialprog')->with('procedencias',$procedencias)->with('archivos',$archivo)->with('categorias',$categorias)->with('generos',$genero);
     }
     public function index2()
     {
@@ -57,7 +61,48 @@ class MaterialController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $material= new Material;
+        $material->ID_USU= Auth::user()->id;
+        $material->COD_MAT= $request->input('cod_mat');
+        $material->TIT_MAT= $request->input('tit_mat');
+        $material->SUB_MAT= $request->input('sub_mat');
+        $material->ANP_MAT= $request->input('anp_mat');
+        $material->DUR_MAT= $request->input('dur_mat');
+        $material->DIR_MAT= $request->input('dir_mat');
+        $material->PAI_MAT= $request->input('pai_mat');
+        $material->GUI_MAT= $request->input('gui_mat');
+        $material->ID_GEN= $request->input('gen_mat');
+        $material->EST_MAT= $request->input('est_mat');
+        $material->RES_MAT= $request->input('res_mat');
+        $material->COM_MAT= $request->input('com_mat');
+        if(is_null($request->file('files'))){
+             $material->POR_MAT= 'X';
+        }else{
+        $material->POR_MAT= $material->TIT_MAT.'-'.$material->COD_MAT;
+
+        \Storage::disk('local')->put($material->POR_MAT, \File::get($request->file('files')));
+        }
+        $material->ID_UBI= $request->input('id_ubi');
+        $material->DES_UBI= $request->input('des_ubi');
+        $material->ACT_MAT= 1;
+        $material->NRO_PRO= $request->input('nro_pro');
+        $material->ID_PRO= $request->input('id_pro');
+        $material->ID_ARC= $request->input('id_arc');
+        $material->save();
+        $mensaje="Material registrado correctamente";
+
+        if($request->input('nom_art')!='' && $request->input('pre_art'))
+        {
+            $articulo = new Articulo;
+            $articulo->TIT_ART=$request->input('nom_art');
+            $articulo->PRE_ART=$request->input('pre_art');
+            $articulo->ID_CAT=$request->input('id_cat');
+            $articulo->ID_MAT=$material->id;
+            $articulo->save();
+            $mensaje="Material y articulo registrados correctamente";
+        }
+        $mensaje="Material registrado correctamente";
+        return redirect()->route('material')->with('mensaje',$mensaje);
     }
 
     /**
@@ -66,6 +111,13 @@ class MaterialController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+     public function hoja()
+     {
+       $materiales = Material::where('id','!=','0')->get();
+       return view('hoja')->with('materiales',$materiales);
+     }
     public function show($id)
     {
         //

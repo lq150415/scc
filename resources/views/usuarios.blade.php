@@ -47,21 +47,21 @@
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-3 control-label">Nombre</label>
     <div class="col-lg-9">
-      <input type="text" name="nom_usu" value="<?=old("nom_usu")?>" class="form-control" id="nom_usu"
+      <input type="text" name="nom_usu" value="<?=old("nom_usu");?>" class="form-control" id="nom_usu"
              placeholder="Nombre del cliente">
     </div>
   </div>
    <div class="form-group">
     <label for="ejemplo_password_3" class="col-lg-3 control-label">Apellido paterno</label>
     <div class="col-lg-9">
-      <input type="text" name="apa_usu" value="<?=old("apa_usu")?>" class="form-control" id="apa_usu" 
+      <input type="text" name="apa_usu" value="<?=old("apa_usu");?>" class="form-control" id="apa_usu" 
              placeholder="Apellido paterno">
     </div>
     </div>
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-3 control-label">Apellido materno</label>
     <div class="col-lg-9">
-      <input type="text" name="ama_usu" value="<?=old("ama_usu")?>" class="form-control" id="ama_usu"
+      <input type="text" name="ama_usu" value="<?=old("ama_usu");?>" class="form-control" id="ama_usu"
              placeholder="Apellido materno">
     </div>
     </div>
@@ -79,7 +79,7 @@
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-3 control-label">Nick de usuario</label>
     <div class="col-lg-9">
-      <input type="tel" name="nic_usu" value="<?=old("nic_usu")?>" class="form-control" id="nic_usu"
+      <input type="tel" name="nic_usu" value="<?=old("nic_usu");?>" class="form-control" id="nic_usu"
              placeholder="CI / NICK DE USUARIO">
 
     </div>

@@ -39,10 +39,10 @@
 		<tr>
 			<th>NOMBRE</th>
 			<th>DESCRIPCION</th>
-			<th data-orderable="false"> </th>	
+			<th data-orderable="false"> </th>
 		</tr>
 	</thead>
-	
+
 	<tbody style="font-size:11px;">
 		<tr class="table table-hover">
 		<?php
@@ -50,27 +50,31 @@
           ?>
 						<th><?php echo $categoria->NOM_CAT;?></th>
 						<th><?php echo $categoria->DES_CAT;?></th>
-						<th style=" width:85px; "><button data-toggle = "modal" data-target = "#myModal2" onClick="modificar(<?php echo "'$categoria->NOM_CAT'".','."'$categoria->DES_CAT'".','."'$categoria->id"."'";?>);" class="btn btn-primary" title="Modificar categoria"> <span class="glyphicon glyphicon-pencil" style="font-size:12px;"> </span> </button> <button data-toggle = "modal" data-target = "#myModal3" onClick="eliminar(<?php echo $categoria->id;?>);" class="btn btn-danger" title="Eliminar categoria"> <span class="glyphicon glyphicon-trash" style="font-size:12px;"></span> </button></th>	
+						<th style=" width:85px; ">
+							<?php if($categoria->id==25){ ?>
+								<h1 class="label label-warning">No hay acciones disponibles</label>
+							<?php }else{ ?>
+								<button data-toggle = "modal" data-target = "#myModal2" onClick="modificar(<?php echo "'$categoria->NOM_CAT'".','."'$categoria->DES_CAT'".','."'$categoria->id"."'";?>);" class="btn btn-primary" title="Modificar categoria"> <span class="glyphicon glyphicon-pencil" style="font-size:12px;"> </span> </button> <button disabled="true" data-toggle = "modal" data-target = "#myModal3" onClick="eliminar(<?php echo $categoria->id;?>);" class="btn btn-danger" title="Eliminar categoria"> <span class="glyphicon glyphicon-trash"  style="font-size:12px;"></span> </button></th>
 		</tr>
-				<?php	endforeach;
-			
+				<?php	} endforeach;
+
 			?>
 	</tbody>
 </table>
 </div>
 </fieldset>
 <!-- Modal -->
- <div class = "modal fade" id = "myModal2" tabindex = "-1" role = "dialog" 
+ <div class = "modal fade" id = "myModal2" tabindex = "-1" role = "dialog"
    aria-labelledby = "myModalLabel" aria-hidden = "true">
-   
+
    <div class = "modal-dialog">
       <div class = "modal-content">
-         
+
          <div class = "modal-header">
             <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
                   &times;
             </button>
-            
+
             <h4 class = "modal-title" id = "myModalLabel">
                Modificar categoria
             </h4>
@@ -91,13 +95,13 @@
             <input class="form-control"  required placeholder="Descripcion de la categoria" id="descat" name="descat">
          </div>
          </div>
-        
+
          <input type="hidden" id="idalm">
          <div class = "modal-footer" style="border-top: 0;">
             <button type = "button" class = "btn btn-danger" data-dismiss = "modal"><span class="glyphicon glyphicon-remove" style="font-size: 10px;"></span>
                Cancelar
             </button>
-            
+
             <button type = "submit" class = "btn btn-primary"><span style="font-size: 10px;" class="glyphicon glyphicon-plus"></span>
                Registrar
             </button>
@@ -105,16 +109,16 @@
          </form>
       </div><!-- /.modal-content -->
    </div><!-- /.modal-dialog -->
-  
+
 </div><!-- /.modal -->
   </div>
 </div>
-<div class = "modal fade" id = "myModal3" tabindex = "-1" role = "dialog" 
+<div class = "modal fade" id = "myModal3" tabindex = "-1" role = "dialog"
    aria-labelledby = "myModalLabel" aria-hidden = "true">
-   
+
    <div class = "modal-dialog">
       <div class = "modal-content">
-         
+
          <div class = "modal-header">
             <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
                   &times;
@@ -127,12 +131,12 @@
          <div class = "modal-body">
          <input type="hidden" id="ideli" name="ideli">
             <div class=" ">Desea eliminar el elemento?</div>
-         
+
          <div class = "modal-footer" style="border-top: none;">
             <button type = "button" class = "btn btn-danger" data-dismiss = "modal"><span class="glyphicon glyphicon-remove" style="font-size: 10px; "></span>
                Cancelar
             </button>
-            
+
             <button type = "submit" class = "btn btn-primary"> <span style="font-size: 10px; " class="glyphicon glyphicon-plus"></span>
                Aceptar
             </button>
@@ -141,7 +145,7 @@
          </form>
       </div><!-- /.modal-content -->
    </div><!-- /.modal-dialog -->
-  
+
 </div><!-- /.modal -->
   </div>
 </div>

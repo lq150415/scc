@@ -66,6 +66,51 @@
 	padding: 10px 2px 10px 10px;
 	font-size: 15px;
 	float: right;
-	width: 30%;
+	width: 80%;
 	margin-right: 3%;
 }
+.panel1{
+	text-align: center;
+	padding: 10px 2px 10px 10px;
+	font-size: 15px;
+	float: left;
+	width: 47%;
+	margin-right: 3%;
+}
+.panel2{
+	text-align: center;
+	padding: 10px 2px 10px 10px;
+	font-size: 15px;
+	float: right ;
+	width: 47%;
+	margin-right: 3%;
+}
+.panel3{
+	text-align: center;
+	padding: 10px 2px 10px 10px;
+	font-size: 15px;
+	float: right ;
+	width: 97%;
+	margin-right: 3%;
+}
+.texto1
+{
+	font-size: 80px;
+	color: #337ab7;
+	font-style: bold;
+}
+.texto2
+{
+	font-size: 80px;
+	color: #a94442;
+	font-style: bold;
+}
+.texto3
+{
+	font-size: 80px;
+	color: #3c763d;
+	font-style: bold;
+}
+ .btn-circle { width: 30px; height: 30px; text-align: center;padding: 6px 0;font-size: 12px;line-height: 1.428571429;border-radius: 25px;}
+ .btn-circle.btn-lg {width: 40px;height: 40px;padding: 8px 10px;font-size: 18px;line-height:1.33;border-radius: 25px;}
+ .btn-circle.btn-lg2 {width: 25px;height: 25px;padding: 4px 5px;font-size: 11px;line-height:1.33;border-radius: 25px;}

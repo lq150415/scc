@@ -47,15 +47,16 @@ class UsuariosController extends Controller
             'niv_usu.required'=>'Seleccione el nivel de usuario correcto',
             'pas_usu.required'=>'El password es requerido',
             'alpha',
-            'nom_usu.alpha'=>'El nombre solo debe tener letras',
-            'apa_usu.alpha'=>'El apellido paterno solo debe tener letras',
-            'ama_usu.alpha'=>'El apellido materno solo debe tener letras',
+            'nom_usu.regex'=>'El nombre solo debe tener letras',
+            'apa_usu.regex'=>'El apellido paterno solo debe tener letras',
+            'ama_usu.regex'=>'El apellido materno solo debe tener letras',
            
          );
+         
          $validator = Validator::make($request->all(), [
-            'nom_usu' => 'required|alpha',
-            'apa_usu' => 'required|alpha',
-            'ama_usu' => 'required|alpha',
+            'nom_usu' => 'required|regex:/^[a-z\s]+$/i',
+            'apa_usu' => 'required|regex:/^[a-z\s]+$/i',
+            'ama_usu' => 'required|regex:/^[a-z\s]+$/i',
             'nic_usu' => 'required|unique:users',
             'niv_usu' => 'required|integer',
             'pas_usu' => 'required', 

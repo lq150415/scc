@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 use sccventas\Categoria;
 use sccventas\Http\Requests;
 use sccventas\Http\Controllers\Controller;
+use sccventas\User;
+use sccventas\Cliente;
+use sccventas\Venta;
+use sccventas\Vendido;
+use sccventas\Material;
+use sccventas\Paquete;
+use sccventas\Empaquetado;
+use sccventas\Articulos;
 
 class AdministrarController extends Controller
 {
@@ -19,6 +27,22 @@ class AdministrarController extends Controller
         $categoria= Categoria::get();
         return view('administrar.categoria')->with('categorias',$categoria);
     }
+    public function indexusu()
+    {
+        $usuario= User::get();
+        return view('administrar.usuario')->with('usuarios',$usuario);
+    }
+    public function indexcli()
+    {
+        $cliente= Cliente::get();
+        return view('administrar.cliente')->with('clientes',$cliente);
+    }
+    public function indexven()
+    {
+        $venta= Venta::join('clientes','clientes.id','=','ID_CLI')->get();
+        $vendido= Vendido::get();
+        return view('administrar.venta')->with('ventas',$venta)->with('vendidos',$vendido);
+    }
 
     public function modifcat(Request $request)
     {
@@ -27,8 +51,44 @@ class AdministrarController extends Controller
         $categoria->NOM_CAT = $request->input('nomcat');
         $categoria->DES_CAT = $request->input('descat');
         $categoria->save();
-        $mensaje='Categoria modificada correctamente';  
-        return redirect()->route('admincat')->with('mensaje',$mensaje);      
+        $mensaje='Categoria modificada correctamente';
+        return redirect()->route('admincat')->with('mensaje',$mensaje);
+    }
+
+    public function modifcli(Request $request)
+    {
+        $id=$request->input('idcli');
+        $cliente= Cliente::find($id);
+        $cliente->NOM_CLI = $request->input('nom_usu');
+        $cliente->APA_CLI = $request->input('apa_usu');
+        $cliente->AMA_CLI = $request->input('ama_usu');
+        $cliente->TEL_CLI = $request->input('tel_usu');
+        $cliente->EMA_CLI = $request->input('ema_usu');
+        $cliente->DIR_CLI = $request->input('dir_usu');
+        $cliente->save();
+        $mensaje='Cliente modificado correctamente';
+        return redirect()->route('admincli')->with('mensaje',$mensaje);
+    }
+
+    public function modifusu(Request $request)
+    {
+        $id=$request->input('idusu');
+        $usuarios= User::find($id);
+        $usuarios->NIC_USU = $request->input('nomusu');
+        $usuarios->NIV_USU = $request->input('nivusu');
+        $usuarios->save();
+        $mensaje='Datos de usuario modificados correctamente';
+        return redirect()->route('adminusu')->with('mensaje',$mensaje);
+    }
+
+    public function mcousu(Request $request)
+    {
+        $id=$request->input('idcon');
+        $usuarios= User::find($id);
+        $usuarios->password =bcrypt($request->input('conusu'));
+        $usuarios->save();
+        $mensaje='Contraseña modificada correctamente';
+        return redirect()->route('adminusu')->with('mensaje',$mensaje);
     }
 
     public function elicat(Request $request)
@@ -37,6 +97,21 @@ class AdministrarController extends Controller
         $categoria= Categoria::where('id','=',$id)->delete();
         $mensaje="Categoria eliminada";
               return redirect()->route('admincat')->with('mensaje2',$mensaje);
+    }
+    public function elicli(Request $request)
+    {
+        $id=$request->input('ideli');
+        $cliente= Cliente::where('id','=',$id)->delete();
+        $mensaje="Cliente eliminado";
+              return redirect()->route('admincli')->with('mensaje2',$mensaje);
+    }
+
+    public function eliusu(Request $request)
+    {
+        $id=$request->input('ideli');
+        $usuarios= User::where('id','=',$id)->delete();
+        $mensaje="Usuario eliminado";
+              return redirect()->route('adminusu')->with('mensaje2',$mensaje);
     }
     /**
      * Show the form for creating a new resource.
@@ -80,11 +155,10 @@ class AdministrarController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * Clam  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

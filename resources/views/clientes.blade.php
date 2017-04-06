@@ -33,28 +33,28 @@
             	 <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-3 control-label">Nombre</label>
     <div class="col-lg-9">
-      <input type="text" name="nom_usu" value="<?=old("nom_usu")?>" class="form-control" id="ejemplo_email_3"
+      <input type="text" name="nom_usu" value="<?=old("nom_usu");?>" class="form-control" id="ejemplo_email_3"
              placeholder="Nombre del cliente">
     </div>
   </div>
    <div class="form-group">
     <label for="ejemplo_password_3" class="col-lg-3 control-label">Apellido paterno</label>
     <div class="col-lg-9">
-      <input type="text" name="apa_usu" value="<?=old("apa_usu")?>" class="form-control" id="ejemplo_password_3" 
+      <input type="text" name="apa_usu" value="<?=old("apa_usu");?>" class="form-control" id="ejemplo_password_3" 
              placeholder="Apellido paterno">
     </div>
     </div>
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-3 control-label">Apellido materno</label>
     <div class="col-lg-9">
-      <input type="text" name="ama_usu" class="form-control" value="<?=old("ama_usu")?>" id="ejemplo_email_3"
+      <input type="text" name="ama_usu" class="form-control" value="<?=old("ama_usu");?>" id="ejemplo_email_3"
              placeholder="Apellido materno">
     </div>
     </div>
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-3 control-label">Telefono</label>
     <div class="col-lg-9">
-      <input type="tel" value="<?=old("tel_usu")?>" name="tel_usu" class="form-control" id="ejemplo_email_3"
+      <input type="tel" value="<?=old("tel_usu");?>" name="tel_usu" class="form-control" id="ejemplo_email_3"
              placeholder="Telefono del cliente">
 
     </div>
@@ -62,7 +62,7 @@
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-3 control-label">E-mail</label>
     <div class="col-lg-9">
-      <input type="email" name="ema_usu" value="<?=old("ema_usu")?>" class="form-control" id="ejemplo_email_3"
+      <input type="email" name="ema_usu" value="<?=old("ema_usu");?>" class="form-control" id="ejemplo_email_3"
              placeholder="Direccion e-mail del cliente">
 
     </div>
@@ -71,7 +71,7 @@
     <div class="form-group">
     <label for="ejemplo_email_3" class="col-lg-3 control-label">Direccion</label>
     <div class="col-lg-9">
-    <textarea type="text" name="dir_usu" value="<?=old("dir_usu")?>" class="form-control" id="ejemplo_email_3"
+    <textarea type="text" name="dir_usu" value="<?=old("dir_usu");?>" class="form-control" id="ejemplo_email_3"
              placeholder="Direccion de cliente"></textarea>
     </div>
     </div>

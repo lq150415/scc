@@ -24,13 +24,21 @@ class EnviarController extends Controller
         $categorias= $categorias->get();
         return view('email')->with('clientes',$clientes)->with('categorias',$categorias);
     }
+    public function index2()
+    {
+        $clientes=new Cliente;
+        $clientes = $clientes->where('EMA_CLI','!=','')->get();
+        $categorias= new Categoria;
+        $categorias= $categorias->get();
+        return view('email2')->with('clientes',$clientes)->with('categorias',$categorias);
+    }
 
      function enviar (Request $request){
           $mensaje= $request->input('mensaje');
           $this->subject= $request->input('subject');
           $this->email= $request->input('email');
           $this->nombre= $request->input('nombre');
-    
+
         Mail::raw($mensaje,function($message) {
             $message->to($this->email ,$this->nombre)
             ->subject($this->subject);

@@ -43,19 +43,21 @@ class ClientesController extends Controller
             'nom_usu.required'=>'El nombre es requerido',
             'apa_usu.required'=>'El apellido paterno es requerido',
             'ama_usu.required'=>'El apellido materno es requerido',
-            'tel_usu.required'=>'El nick es requerido',
-            'ema_usu.required'=>'El e-mail es requerido',
+            'tel_usu.integer'=>'El telefono solo debe contener numeros',
+            'ema_usu.email'=>'El formato del correo no es valido',
             'nom_usu.alpha'=>'El nombre solo debe tener letras',
             'apa_usu.alpha'=>'El apellido paterno solo debe tener letras',
             'ama_usu.alpha'=>'El apellido materno solo debe tener letras',
+            'regex'=>'El campo contiene numeros y/o caracteres especiales',
            
          );
+         
          $validator = Validator::make($request->all(), [
-            'nom_usu' => 'required|alpha',
-            'apa_usu' => 'required|alpha',
-            'ama_usu' => 'required|alpha',
-            'tel_usu' => 'required|integer',
-            'ema_usu' => 'required|email', 
+            'nom_usu' => 'required|regex:/^[a-z\s]+$/i',
+            'apa_usu' => 'required|regex:/^[a-z\s]+$/i',
+            'ama_usu' => 'required|regex:/^[a-z\s]+$/i',
+            'tel_usu' => 'integer',
+            'ema_usu' => 'email', 
         ],$messages);
         
 

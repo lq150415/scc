@@ -11,7 +11,6 @@
           }
         </style>
 <!-- Button trigger modal -->
-<form class="form-horizontal" action="registrarcliente" method="POST">
 <fieldset  style="border:1px #ddd solid; padding:10px;">
 <legend style="border:none; width:auto; margin-bottom:0px; padding:4px;" > Datos tecnicos</legend>
 <div>
@@ -36,24 +35,26 @@
         </ul>
     </div>
 @endif
+  <form method="POST" class="form-horizontal" action="registrarmaterial" accept-charset="UTF-8" enctype="multipart/form-data">
 <fieldset  style="border:1px #ddd solid; padding:10px;">
 <legend style="border:none; font-size:13px; width:auto; margin-bottom:0px; padding:4px;" > Seccion 1</legend>
+
  <div class="form-group">
-    <label for="ejemplo_email_3" class="col-sm-1 control-label">Codigo</label>
+    <label  class="col-sm-1 control-label">Codigo</label>
     <div class="col-md-2">
-      <input type="text" name="nom_usu" value="<?=old("nom_usu")?>" class="form-control" id="ejemplo_email_3"
+      <input type="text" name="cod_mat" class="form-control" id="cod_mat"
              placeholder="Codigo ">
     </div>
-    <label for="ejemplo_email_3" class="col-sm-1 control-label">Titulo</label>
+    <label  class="col-sm-1 control-label">Titulo</label>
     <div class="col-md-8">
-      <input type="text" name="nom_usu" value="<?=old("nom_usu")?>" class="form-control" id="ejemplo_email_3"
+      <input type="text" name="tit_mat"  class="form-control" id="tit_mat"
              placeholder="Titulo del material">
     </div>
   </div>
    <div class="form-group">
     <label for="ejemplo_password_3" class="col-lg-4 control-label">Subtitulo</label>
     <div class="col-md-8">
-      <input type="text" name="apa_usu" value="<?=old("apa_usu")?>" class="form-control" id="ejemplo_password_3" 
+      <input type="text" name="sub_mat"  class="form-control" id="sub_mat" 
              placeholder="Subtitulo del material">
     </div>
     </div>
@@ -61,14 +62,13 @@
 <fieldset  style="border:1px #ddd solid; padding:10px;">
 <legend style="border:none; font-size:13px; width:auto; margin-bottom:0px; padding:4px;" > Seccion 2</legend>
    	 <div class="form-group">
-    <label for="ejemplo_email_3" class="col-sm-1 control-label">Duracion</label>
+    <label class="col-sm-1 control-label">Duracion</label>
     <div class="col-sm-2">
-      <input type="time"  name=""   step="1" value="<?=old("nom_usu")?>" class="form-control" id="ejemplo_email_3"
-             placeholder="HH:mm:ss">
+      <input type="time" name="dur_mat" step="1" class="form-control">
     </div>
-     <label for="ejemplo_email_3" class="col-sm-7 control-label">Cantidad de veces que se emite el video</label>
+     <label  class="col-sm-7 control-label">Cantidad de veces que se emite el video</label>
     <div class="col-sm-2">
-      <input type="number" min="0" name="" value="<?=old("nom_usu")?>" class="form-control" id="ejemplo_email_3"
+      <input type="number" min="0" name="nro_pro"  class="form-control" id="nro_pro"
              placeholder="Nro">
     </div>
   </div>
@@ -76,10 +76,10 @@
 <fieldset  style="border:1px #ddd solid; padding:10px;">
 <legend style="border:none; font-size:13px; width:auto; margin-bottom:0px; padding:4px;" > Seccion 3</legend>
    <div class="form-group">
-    <label for="ejemplo_password_3" class="col-sm-2 control-label">Procedencia</label>
+    <label class="col-sm-2 control-label">Procedencia</label>
     <div class="col-md-4">
-        <select class="form-control">
-          <option value="">SELECCIONE</option>
+        <select class="form-control" required="yes" name="id_pro">
+          <option>SELECCIONE</option>
           <?php foreach ($procedencias as $procedencia){
           ?>
           <option value="{{$procedencia->id}}">{{$procedencia->titulo}}</option>
@@ -88,8 +88,8 @@
       </div>
     <label for="ejemplo_password_3" class="col-sm-2 control-label">Tipo de archivo</label>
     <div class="col-md-4">
-    <select class="form-control">
-      <option value="">SELECCIONE</option>
+    <select class="form-control" name="id_arc">
+      <option>SELECCIONE</option>
           <?php foreach ($archivos as $archivo){
           ?>
           <option value="{{$archivo->id}}">{{$archivo->titulo}}</option>
@@ -100,12 +100,15 @@
     <div class="form-group">
     <label for="ejemplo_password_3" class="col-sm-2 control-label">Ubicacion</label>
     <div class="col-md-4">
-      <input type="text" name="apa_usu" value="<?=old("apa_usu")?>" class="form-control" id="ejemplo_password_3" 
-             placeholder="Ubicacion">
+      <select name="id_ubi" class="form-control" id="id_ubi">
+        <option>SELECCIONE</option>
+        <option value="1">Estante</option>
+        <option value="2">Cpu</option>
+      </select>
     </div>
     <label for="ejemplo_password_3" class="col-sm-2 control-label">Ubicacion Fisica</label>
     <div class="col-md-4">
-      <input type="text" name="apa_usu" value="<?=old("apa_usu")?>" class="form-control" id="ejemplo_password_3" 
+      <input type="text" name="des_ubi"  class="form-control" id="des_ubi" 
              placeholder="Ubicacion Fisica">
     </div>
     </div>
@@ -113,19 +116,19 @@
 <fieldset  style="border:1px #ddd solid; padding:10px;">
 <legend style="border:none; font-size:13px; width:auto; margin-bottom:0px; padding:4px;" > Datos produccion</legend>
     <div class="form-group">
-    <label for="ejemplo_email_3" class="col-sm-1 control-label">Director</label>
+    <label  class="col-sm-1 control-label">Director</label>
     <div class="col-lg-4">
-      <input type="text" name="ama_usu" class="form-control" value="<?=old("ama_usu")?>" id="ejemplo_email_3"
+      <input type="text" name="dir_mat" class="form-control"  id="dir_mat"
              placeholder="Director">
     </div>
-    <label for="ejemplo_email_3" class="col-sm-2 control-label">Año de produccion</label>
+    <label  class="col-sm-2 control-label">Año de produccion</label>
     <div class="col-md-2">
-      <input type="number" name="ama_usu" min="1900" class="form-control" value="<?=old("ama_usu")?>" id="ejemplo_email_3"
+      <input type="number" name="anp_mat" min="1900" class="form-control" id="anp_mat"
              placeholder="Año">
     </div>
-    <label for="ejemplo_email_3" class="col-sm-1 control-label">Pais</label>
+    <label  class="col-sm-1 control-label">Pais</label>
     <div class="col-lg-2">
-      <select class="form-control">
+      <select class="form-control" name="pai_mat">
         <option value="Bolivia">Bolivia</option>
         <option value="Costa Rica">Costa Rica</option>
         <option value="Venezuela">Venezuela</option>
@@ -135,44 +138,43 @@
     </div>
     </div>
     <div class="form-group">
-    <label for="ejemplo_email_3" class="col-sm-1 control-label">Guion</label>
+    <label  class="col-sm-1 control-label">Guion</label>
     <div class="col-lg-4">
-      <input type="text" name="ama_usu" class="form-control" value="<?=old("ama_usu")?>" id="ejemplo_email_3"
+      <input type="text" name="gui_mat" class="form-control"  id="gui_mat"
              placeholder="Guion">
     </div>
-    <label for="ejemplo_email_3" class="col-sm-2 control-label">Estudio</label>
+    <label  class="col-sm-2 control-label">Estudio</label>
     <div class="col-lg-4">
-      <input type="text" name="ama_usu" class="form-control" value="<?=old("ama_usu")?>" id="ejemplo_email_3"
+      <input type="text" name="est_mat" class="form-control"  id="est_mat"
              placeholder="Estudio">
     </div>    
     </div>
     <div class="form-group">
-    <label for="ejemplo_email_3" class="col-sm-1 control-label">Genero</label>
+    <label  class="col-sm-1 control-label">Genero</label>
     <div class="col-lg-4">
-      <select class="form-control">
-          <option value="">SELECCIONE</option>
+      <select class="form-control" required="yes" name="gen_mat">
+          <option>SELECCIONE</option>
           <?php foreach ($generos as $genero){
           ?>
           <option value="{{$genero->id}}">{{$genero->titulo}}</option>
           <?php } ?>
         </select>
     </div>
-    <label for="ejemplo_email_3" class="col-sm-2 control-label">Resolucion</label>
+    <label  class="col-sm-2 control-label">Resolucion</label>
     <div class="col-lg-4">
-       <select class="form-control">
-        <option value="1024 x 768">1024 x 768</option>
-       
-        <option value="1366 x 768">1366 x 768</option>
+       <select class="form-control" name="res_mat">
+        <option value="1">1024 x 768</option> 
+        <option value="2">1366 x 768</option>
       </select>
     </div>    
     </div>
     </fieldset>
 <fieldset  style="border:1px #ddd solid; padding:10px;">
-<legend style="border:none; font-size:13px; width:auto; margin-bottom:0px; padding:4px;" > Datos Adicionales</legend>
+<legend style="border:none; font-size:13px; width:auto; margin-bottom:0px; padding:4px;"> Datos Adicionales</legend>
     <div class="form-group">
     <label  class="col-lg-2 control-label">Portada</label>
     <div class="col-lg-5">
-      <input type="file" value="<?=old("tel_usu")?>" class="form-control" id="files" name="files[]" id="ejemplo_email_3"
+      <input type="file" class="form-control" id="files" name="files" 
              placeholder="Portada">
              <br/>
     <output id="list"></output></div>
@@ -180,15 +182,15 @@
      <div class="form-group">
     <label  class="col-lg-2 control-label">Tags</label>
     <div class="col-lg-5">
-      <input type="text" value="<?=old("tel_usu")?>" name="tel_usu" class="form-control" id="ejemplo_email_3"
-             placeholder="Introduzca de la siguiente forma Ej. Mies, Predica">
+      <input type="text" value="<?=old("tel_usu");?>" name="tel_usu" class="form-control" id="ejemplo_email_3"
+             placeholder="Introduzca de la siguiente forma Ej. #Mies#Predica">
 
     </div>
     </div>
-     <div class="form-group">
+    <div class="form-group">
     <label  class="col-lg-2 control-label">Comentarios</label>
     <div class="col-lg-5">
-    <textarea type="text" name="dir_usu" value="<?=old("dir_usu")?>" class="form-control" id="ejemplo_email_3"
+    <textarea type="text" name="com_mat" class="form-control" id="com_mat"
              placeholder=""></textarea>
 
     </div>
@@ -197,15 +199,27 @@
 <fieldset  style="border:1px #ddd solid; padding:10px;">
 <legend style="border:none; font-size:13px; width:auto; margin-bottom:0px; padding:4px;" > Datos de venta</legend>
 <div class="form-group">
-    <label for="ejemplo_email_3" class="col-sm-2 control-label">Nombre comercial</label>
-    <div class="col-lg-4">
-      <input type="text" name="ama_usu" class="form-control" value="<?=old("ama_usu")?>" id="ejemplo_email_3"
-             placeholder="Guion">
+    <label  class="col-sm-2 control-label">Nombre comercial</label>
+    <div class="col-lg-9">
+      <input type="text" name="nom_art" class="form-control"  id="nom_art"
+             placeholder="Nombre comercial del material">
     </div>
-    <label for="ejemplo_email_3" class="col-sm-2 control-label">Precio unitario</label>
+</div>
+<div class="form-group">
+    <label  class="col-sm-2 control-label">Categoria :</label>
     <div class="col-lg-4">
-      <input type="text" name="ama_usu" class="form-control" value="<?=old("ama_usu")?>" id="ejemplo_email_3"
-             placeholder="Estudio">
+      <select class="form-control" id="id_cat" name="id_cat" >
+       
+        <?php foreach ($categorias as $categoria){
+          ?>
+          <option value="{{$categoria->id}}">{{$categoria->NOM_CAT}}</option>
+          <?php } ?>
+      </select>
+    </div>
+    <label  class="col-sm-2 control-label">Precio unitario</label>
+    <div class="col-lg-4">
+      <input type="number" step="0.01" name="pre_art" class="form-control"  id="pre_art"
+             placeholder="Bs.">
     </div>    
     </div>
 </fieldset>
@@ -218,8 +232,8 @@
                Limpiar 
             </button>
          </div>
-    </form>
 </div>
+    </form>
 
   <script>
               function archivo(evt) {
