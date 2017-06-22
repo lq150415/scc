@@ -106,6 +106,36 @@ class VentasController extends Controller
 
     }
 
+    public function cargardetalles()
+    {
+        $id = $_POST['id'];
+        $venta = Venta::find($id);
+        $vendidos= Vendido::where('ID_VEN','=',$venta->id)->join('articulos','articulos.id','=','ID_PRO')->get();
+
+        $j=count($vendidos);
+
+        $cabecera='
+        <table class="table table-hover">
+        <tr class="warning"><td><b>Producto</b></td><td><b>Precio</b></td></tr>
+        ';
+        echo $cabecera;
+        $t=0;
+        for($i=1; $i<=$j; $i++)
+        {
+          $html='<tr>
+          <td>'.$vendidos[$i-1]->TIT_ART.'</td>
+          <td>'.$vendidos[$i-1]->PRE_ART.' Bs. </td></tr>';
+          echo $html;
+          $t= $t+$vendidos[$i-1]->PRE_ART;
+        }
+
+        $z='
+        <tr class="success"><td><b>TOTAL</b></td><td>'.$t.' Bs.</td></tr></table>';
+        echo $z;
+
+
+    }
+
     public function cargarproductos()
     {
         $id = $_POST['id'];

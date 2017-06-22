@@ -1,7 +1,7 @@
 $(document).ready(main);
 var contador = 1;
-var contadores = 1; 
-var ver = 0; 
+var contadores = 1;
+var ver = 0;
 function main () {
 	$('.menu_bar').click(function(){
 		if (contador == 1) {
@@ -18,18 +18,18 @@ function main () {
 
 		} else {
 			contador = 1;
-		
+
 			$('nav.vert').animate({
 				right: '-100%'
 			});
-			
+
 			if(contadores==0){
 			$('nav.lateral').animate({
 				left: '-100%'
 			});
 			contadores = 0;
 		}
-			
+
 		}
 	});
 
@@ -56,13 +56,13 @@ function main () {
 			});
 			contador = 0;
 		}
-			
-	
+
+
 		}
-	
- 
+
+
 });
 	// Mostramos y ocultamos submenus
-	
-	
+
+
 }

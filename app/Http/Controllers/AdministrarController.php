@@ -39,7 +39,7 @@ class AdministrarController extends Controller
     }
     public function indexven()
     {
-        $venta= Venta::join('clientes','clientes.id','=','ID_CLI')->get();
+        $venta= Venta::join('clientes','clientes.id','=','ID_CLI')->select('ventas.id','FEC_VEN','FAC_VEN','NOM_CLI','APA_CLI','AMA_CLI')->get();
         $vendido= Vendido::get();
         return view('administrar.venta')->with('ventas',$venta)->with('vendidos',$vendido);
     }

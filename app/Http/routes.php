@@ -80,6 +80,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('cargarcliente','VentasController@cargarcliente');
   Route::post('cargarcliente2','VentasController@cargarcliente2');
   Route::post('cargarcliente3','VentasController@cargarcliente3');
+	Route::post('cargardetalles','VentasController@cargardetalles');
 	  Route::post('cargarproductos','VentasController@cargarproductos');
 		Route:get('hojaprogramacion','MaterialController@hoja');
 	  Route::post('cargarproductos2','VentasController@cargarproductos2');

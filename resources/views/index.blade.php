@@ -3,19 +3,22 @@
 	<div class="panel bienvenida">
 	<div class="panel panel-primary panel1">
   		<div class="panel-body texto1 ">
-    	<?php echo \sccventas\Vendido::max('CAN_VND'); ?>	Bs.
+    	<?php  $ven=\sccventas\Vendido::select(\DB::raw('sum( CAN_VND * PRE_ART) as SUMA'))->join('articulos','ID_PRO','=','articulos.id')->groupBy('ID_VEN')->orderBy('SUMA','DESC')->first();
+			echo $ven->SUMA;?>	Bs.
   		</div>
   	<div class="panel-heading ">MAYOR VENTA</div>
 	</div>
 	<div class="panel panel-danger panel2">
   		<div class="panel-body texto2">
-    		Bs.
+				<?php  $ven=\sccventas\Vendido::select(\DB::raw('sum( CAN_VND * PRE_ART) as SUMA'))->join('articulos','ID_PRO','=','articulos.id')->first();
+				echo $ven->SUMA;?>Bs.
   		</div>
   	<div class=" panel-heading">TOTAL VENTAS</div>
 	</div>
 	<div class="panel panel-success panel3">
   		<div class="panel-body texto3">
-    		<?php ?>
+				<?php  $ven=\sccventas\Vendido::select(\DB::raw('sum( CAN_VND) as SUMA ,TIT_ART'))->join('articulos','ID_PRO','=','articulos.id')->first();
+				echo $ven->TIT_ART;?>
   		</div>
   	<div class="panel-heading">PRODUCTO MAS VENDIDO	</div>
 	</div>
