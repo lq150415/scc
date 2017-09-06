@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Be right back.</title>
+        <title>Usted no esta autorizado!</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -14,7 +14,8 @@
                 margin: 0;
                 padding: 0;
                 width: 100%;
-                color: #B0BEC5;
+                color: #fff;
+                background-color: #d73519;
                 display: table;
                 font-weight: 100;
                 font-family: 'Lato';
@@ -35,13 +36,52 @@
                 font-size: 72px;
                 margin-bottom: 40px;
             }
+            .paragraph {
+                font-size: 50px;
+                margin-bottom: 40px;
+            }
+            .paragraph2 {
+                font-size: 18px;
+                bottom: 20px;
+                right: 30px;
+                position: fixed;
+                text-align: center;
+                display: table-cell;
+            }
+            .button {
+              color: rgb(255, 255, 255);
+              border-radius: 3px;
+              padding: 13px;
+              background-color: rgb(249, 111, 22);
+              border: none;
+              top: 30px;
+              right: 30px;
+            }
+            .button:hover{
+              background-color: rgb(237, 124, 51);
+            }
+            .divbtn{
+              top: 30px;
+              right: 30px;
+              position: fixed;
+            }
         </style>
     </head>
     <body>
         <div class="container">
-            <div class="content">
-                <div class="title">Acceso denegado, vuelve atras</div>
-            </div>
+              <div class="divbtn">
+                <button onclick="goBack()" class="button">Volver atras</button>
+              </div>
+              <div class="content">
+                <div class="title">Acceso denegado!</div>
+                <div class="paragraph">Usted no tiene acceso a este modulo.</div>
+                <div class="paragraph2">Sistema cristiano de comunicaciones 2017 - Sistema de ventas y programación</div>
+              </div>
         </div>
+        <script>
+        function goBack() {
+            window.history.back();
+        }
+        </script>
     </body>
 </html>

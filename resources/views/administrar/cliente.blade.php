@@ -1,4 +1,7 @@
 @extends('../layout')
+@section('title')
+	Administrador - Clientes (Area restringida)
+@endsection
 	@section ('cuerpo')
 	<div class="panel panel-success cuerpo">
   <div class="panel-heading titleform" >ADMINISTRACION DE CLIENTES - SCC </div>
@@ -7,37 +10,8 @@
 <!-- Button trigger modal -->
 <fieldset>
 <legend>Clientes</legend>
-<script type="text/javascript">
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
-</script>
-<script type="text/javascript">
-	function modificar(data1,data2,data3,data4,data5,data6,data7)
-	{
-		$('#nomcli').val(data1);
-    $('#apacli').val(data2);
-    $('#amacli').val(data3);
-    $('#telcli').val(data4);
-    $('#emacli').val(data5);
-    $('#dircli').val(data6);
-		$('#idcli').val(data7);
-	}
-		function eliminar(data)
-	{
-		$('#ideli').val(data);
-	}
-
-</script>
-         <?php if (Session::has('mensaje2')):
-            ?>
-                  <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
-         <?php endif;?>
-         <?php if (Session::has('mensaje')):
-            ?>
-                  <div class="mensajewarning alert alert-success"><label><?php echo Session::get('mensaje');?></label></div>
-         <?php endif;?>
 </br>
-<div style="width:100%; margin-left:5%; ">
+<div style="width:95%; margin-left:5%; ">
 <table id="example" class="display" style="float:left;">
 	<thead >
 		<tr>
@@ -228,11 +202,22 @@
 </div><!-- /.modal -->
   </div>
 </div>
-
-
-
-
-
-
-
 	@stop
+@section('script')
+	<script type="text/javascript">
+		function modificar(data1,data2,data3,data4,data5,data6,data7)
+		{
+			$('#nomcli').val(data1);
+	    $('#apacli').val(data2);
+	    $('#amacli').val(data3);
+	    $('#telcli').val(data4);
+	    $('#emacli').val(data5);
+	    $('#dircli').val(data6);
+			$('#idcli').val(data7);
+		}
+			function eliminar(data)
+		{
+			$('#ideli').val(data);
+		}
+	</script>
+@endsection

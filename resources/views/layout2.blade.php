@@ -4,6 +4,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>@yield('title')</title>
 		{!! Html::style('assets/css/bootstrap.css') !!}
+		{!! Html::style('assets/css/form.css') !!}
 		{!! Html::style('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}
 		{!! Html::style('css/sistemalaravel.css') !!}
 		{!! Html::style('assets/css/menulateral.css') !!}
@@ -12,41 +13,20 @@
 		{!! Html::style('dist/css/AdminLTE.min.css') !!}
 		{!! Html::style('dist/css/skins/_all-skins.min.css') !!}
 		{!! Html::style('css/table/jquery.dataTables.css') !!}
-		{!! Html::style('assets/css/form.css') !!}
-		{!! Html::style('css/form.css') !!}
 		@yield('css')
 </head>
 
-<body class="background2" >
-	<div id="imgLOAD" style="text-align:center; position:absolute; cursor: wait; z-index:2">
-		<b>Cargando...</b>
-		<img src="{{ url('img/cargando.gif') }}" />
-	</div>
-	<script type='text/javascript'>
-		window.onload = detectarCarga;
-		function detectarCarga(){
-			document.getElementById("imgLOAD").style.display="none";
-			document.getElementById("page").style.display="block";
-
-		}
-	</script>
-	<div class="container-fluid" id="page" style="position:relative;  display: none;">
-
-	@if (Session::has('mensaje2'))
-					 <div class="alerta mensajewarning alert alert-danger  alert-dismissable fade in" >
-							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								<strong>Error!</strong> {{Session::get('mensaje2')}}
-					 </div>
-	@endif
-	@if (Session::has('mensaje'))
-					<div class="alerta mensajewarning alert alert-success alert-dismissable fade in" style="">
-						 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-							 <strong>Exito!</strong> {{Session::get('mensaje')}}
-					</div>
-	@endif
+<body class="background2">
 <nav class="navbar navbar-default" role="navigation">
-	<div class="container-fluid" >
-
+	<div class="container-fluid">
+		<?php if (Session::has('mensaje2')):
+			 ?>
+						 <div class="mensajewarning alert alert-danger alerta"><label><?php echo Session::get('mensaje2');?></label></div>
+		<?php endif;?>
+		<?php if (Session::has('mensaje')):
+			 ?>
+						 <div class="mensajewarning alert alert-success alerta"><label><?php echo Session::get('mensaje');?></label></div>
+		<?php endif;?>
 		<!-- Brand and toggle get grouped for better mobile display -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -97,65 +77,8 @@
 		</div><!-- /.navbar-collapse -->
 	</div>
 </nav>
-<nav class="navbar navbar-default sidebar" role="navigation">
-    <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-sidebar-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      	<p class="navbar-brand" href="#">Menú</p>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-sidebar-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="{{url('clientes')}}">Registrar clientes<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-check colorspan"></span></a></li>
-        <li ><a href="{{url('usuarios')}}">Registrar Usuarios<span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-plus-sign colorspan"></span></a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Ventas <span class="caret colorspan"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-shopping-cart colorspan"></span></a>
-          <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="{{url('ventas')}}">· Registrar venta</a></li>
-            <li class="divider"></li>
-            <li><a href="{{url('registrarpaquete')}}">· Registrar nuevo paquete</a></li>
-            <li class="divider"></li>
-            <li><a data-toggle = "modal" data-target = "#myModal3">· Registrar nueva categoria</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle <?php if(Auth::user()->NIV_USU==1):;?>not-active<?php endif;?>" data-toggle="dropdown">Administrar <span class="cog colorspan"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-cog colorspan"></span></a>
-          <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="{{ url('adminusu')}}">· Administrar usuarios</a></li>
-            <li><a href="{{ url('admincli')}}">· Administrar clientes</a></li>
-						<li><a href="{{ url('adminven')}}">· Administrar ventas</a></li>
-						<li><a href="{{ url('admingen')}}">· Administrar generos</a></li>
-						<li><a href="{{ url('adminart')}}">· Administrar articulos</a></li>
-						<li><a href="{{ url('adminpro')}}">· Administrar Procedencia</a></li>
-            <li><a href="{{ url('adminpaq')}}">· Administrar paquetes</a></li>
-            <li><a href="{{ url('admincat')}}">· Administrar categorias</a></li>
-            <li><a href="{{ url('adminmat')}}">· Administrar material</a></li>
-            <li><a href="{{ url('adminpen')}}">· Pendientes</a></li>
-          </ul>
-        </li>
-        <li class="">
-          <a href="{{url('material')}}" >Registrar material </span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-dashboard colorspan"></span></a>
-
-        </li>
-      <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Consultas <span class="caret colorspan"></span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-tags colorspan"></span></a>
-          <ul class="dropdown-menu forAnimate" role="menu">
-            <li><a href="#">· Por Fechas</a></li>
-            <li><a href="#">· Por categoria</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="container-fluid">
+<div>
 @yield('cuerpo')
-</div>
 </div>
 
  <div class = "modal fade" id = "myModal3" tabindex = "-1" role = "dialog"
@@ -277,7 +200,6 @@
 {!! Html::script('js/table/shCore.js') !!}
 {!! Html::script('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js') !!}
 {!! Html::script('js/sistemalaravel.js') !!}
-
 	<script type="text/javascript" language="javascript" class="init">
 		$(document).ready(function() {
 			$('#example').DataTable();
@@ -351,8 +273,8 @@
 	            })
 	</script>
 	<script type="text/javascript">
-								$(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },1000); });
-								$(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
+				$(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
+				$(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
 	</script>
 	@yield('script')
 </body>

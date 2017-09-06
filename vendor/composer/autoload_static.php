@@ -68,6 +68,10 @@ class ComposerStaticInit18694ec78666c8f8042bc134983a75ae
         array (
             'League\\Flysystem\\' => 17,
         ),
+        'J' => 
+        array (
+            'Jenssegers\\Date\\' => 16,
+        ),
         'I' => 
         array (
             'Illuminate\\' => 11,
@@ -196,6 +200,10 @@ class ComposerStaticInit18694ec78666c8f8042bc134983a75ae
         'League\\Flysystem\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/flysystem/src',
+        ),
+        'Jenssegers\\Date\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/jenssegers/date/src',
         ),
         'Illuminate\\' => 
         array (
@@ -1401,6 +1409,8 @@ class ComposerStaticInit18694ec78666c8f8042bc134983a75ae
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
+        'Jenssegers\\Date\\Date' => __DIR__ . '/..' . '/jenssegers/date/src/Date.php',
+        'Jenssegers\\Date\\DateServiceProvider' => __DIR__ . '/..' . '/jenssegers/date/src/DateServiceProvider.php',
         'League\\Flysystem\\AdapterInterface' => __DIR__ . '/..' . '/league/flysystem/src/AdapterInterface.php',
         'League\\Flysystem\\Adapter\\AbstractAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractAdapter.php',
         'League\\Flysystem\\Adapter\\AbstractFtpAdapter' => __DIR__ . '/..' . '/league/flysystem/src/Adapter/AbstractFtpAdapter.php',
@@ -3318,16 +3328,25 @@ class ComposerStaticInit18694ec78666c8f8042bc134983a75ae
         'phpDocumentor\\Reflection\\DocBlock\\Tag\\VarTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/VarTag.php',
         'phpDocumentor\\Reflection\\DocBlock\\Tag\\VersionTag' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Tag/VersionTag.php',
         'phpDocumentor\\Reflection\\DocBlock\\Type\\Collection' => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src/phpDocumentor/Reflection/DocBlock/Type/Collection.php',
+        'sccventas\\Archivo' => __DIR__ . '/../..' . '/app/Archivo.php',
+        'sccventas\\Articulo' => __DIR__ . '/../..' . '/app/Articulo.php',
         'sccventas\\Categoria' => __DIR__ . '/../..' . '/app/Categoria.php',
         'sccventas\\Cliente' => __DIR__ . '/../..' . '/app/Cliente.php',
         'sccventas\\Console\\Commands\\Inspire' => __DIR__ . '/../..' . '/app/Console/Commands/Inspire.php',
         'sccventas\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'sccventas\\Empaquetado' => __DIR__ . '/../..' . '/app/Empaquetado.php',
         'sccventas\\Events\\Event' => __DIR__ . '/../..' . '/app/Events/Event.php',
         'sccventas\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'sccventas\\Genero' => __DIR__ . '/../..' . '/app/Genero.php',
+        'sccventas\\Http\\Controllers\\AdministrarController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdministrarController.php',
         'sccventas\\Http\\Controllers\\Auth\\AuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/AuthController.php',
         'sccventas\\Http\\Controllers\\Auth\\PasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/PasswordController.php',
         'sccventas\\Http\\Controllers\\ClientesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientesController.php',
         'sccventas\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'sccventas\\Http\\Controllers\\CorreoController' => __DIR__ . '/../..' . '/app/Http/Controllers/CorreoController.php',
+        'sccventas\\Http\\Controllers\\EnviarController' => __DIR__ . '/../..' . '/app/Http/Controllers/EnviarController.php',
+        'sccventas\\Http\\Controllers\\MaterialController' => __DIR__ . '/../..' . '/app/Http/Controllers/MaterialController.php',
+        'sccventas\\Http\\Controllers\\PrestamoController' => __DIR__ . '/../..' . '/app/Http/Controllers/PrestamoController.php',
         'sccventas\\Http\\Controllers\\UsuariosController' => __DIR__ . '/../..' . '/app/Http/Controllers/UsuariosController.php',
         'sccventas\\Http\\Controllers\\VentasController' => __DIR__ . '/../..' . '/app/Http/Controllers/VentasController.php',
         'sccventas\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
@@ -3337,11 +3356,18 @@ class ComposerStaticInit18694ec78666c8f8042bc134983a75ae
         'sccventas\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
         'sccventas\\Http\\Requests\\Request' => __DIR__ . '/../..' . '/app/Http/Requests/Request.php',
         'sccventas\\Jobs\\Job' => __DIR__ . '/../..' . '/app/Jobs/Job.php',
+        'sccventas\\Material' => __DIR__ . '/../..' . '/app/Material.php',
+        'sccventas\\MaterialSumma' => __DIR__ . '/../..' . '/app/MaterialSumma.php',
+        'sccventas\\Paquete' => __DIR__ . '/../..' . '/app/Paquete.php',
+        'sccventas\\Prestamo' => __DIR__ . '/../..' . '/app/Prestamo.php',
+        'sccventas\\Procedencia' => __DIR__ . '/../..' . '/app/Procedencia.php',
         'sccventas\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'sccventas\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'sccventas\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'sccventas\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'sccventas\\User' => __DIR__ . '/../..' . '/app/User.php',
+        'sccventas\\Vendido' => __DIR__ . '/../..' . '/app/Vendido.php',
+        'sccventas\\Venta' => __DIR__ . '/../..' . '/app/Venta.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

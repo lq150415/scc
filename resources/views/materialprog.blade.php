@@ -54,7 +54,7 @@
    <div class="form-group">
     <label for="ejemplo_password_3" class="col-lg-4 control-label">Subtitulo</label>
     <div class="col-md-8">
-      <input type="text" name="sub_mat"  class="form-control" id="sub_mat" 
+      <input type="text" name="sub_mat"  class="form-control" id="sub_mat"
              placeholder="Subtitulo del material">
     </div>
     </div>
@@ -108,7 +108,7 @@
     </div>
     <label for="ejemplo_password_3" class="col-sm-2 control-label">Ubicacion Fisica</label>
     <div class="col-md-4">
-      <input type="text" name="des_ubi"  class="form-control" id="des_ubi" 
+      <input type="text" name="des_ubi"  class="form-control" id="des_ubi"
              placeholder="Ubicacion Fisica">
     </div>
     </div>
@@ -147,7 +147,7 @@
     <div class="col-lg-4">
       <input type="text" name="est_mat" class="form-control"  id="est_mat"
              placeholder="Estudio">
-    </div>    
+    </div>
     </div>
     <div class="form-group">
     <label  class="col-sm-1 control-label">Genero</label>
@@ -163,10 +163,10 @@
     <label  class="col-sm-2 control-label">Resolucion</label>
     <div class="col-lg-4">
        <select class="form-control" name="res_mat">
-        <option value="1">1024 x 768</option> 
+        <option value="1">1024 x 768</option>
         <option value="2">1366 x 768</option>
       </select>
-    </div>    
+    </div>
     </div>
     </fieldset>
 <fieldset  style="border:1px #ddd solid; padding:10px;">
@@ -174,7 +174,7 @@
     <div class="form-group">
     <label  class="col-lg-2 control-label">Portada</label>
     <div class="col-lg-5">
-      <input type="file" class="form-control" id="files" name="files" 
+      <input type="file" class="form-control" id="files" name="files"
              placeholder="Portada">
              <br/>
     <output id="list"></output></div>
@@ -209,7 +209,7 @@
     <label  class="col-sm-2 control-label">Categoria :</label>
     <div class="col-lg-4">
       <select class="form-control" id="id_cat" name="id_cat" >
-       
+
         <?php foreach ($categorias as $categoria){
           ?>
           <option value="{{$categoria->id}}">{{$categoria->NOM_CAT}}</option>
@@ -220,16 +220,16 @@
     <div class="col-lg-4">
       <input type="number" step="0.01" name="pre_art" class="form-control"  id="pre_art"
              placeholder="Bs.">
-    </div>    
+    </div>
     </div>
 </fieldset>
      <div class = "modal-footer">
             <button type = "submit" class = "btn btn-primary" data-dismiss = "modal"><span class="glyphicon glyphicon-check"></span>
-              Registrar 
+              Registrar
             </button>
-            
+
             <button type = "button" class = "btn btn-danger"><span class="glyphicon glyphicon-trash"></span>
-               Limpiar 
+               Limpiar
             </button>
          </div>
 </div>
@@ -238,27 +238,27 @@
   <script>
               function archivo(evt) {
                   var files = evt.target.files; // FileList object
-             
+
                   // Obtenemos la imagen del campo "file".
                   for (var i = 0, f; f = files[i]; i++) {
                     //Solo admitimos imágenes.
                     if (!f.type.match('image.*')) {
                         continue;
                     }
-             
+
                     var reader = new FileReader();
-             
+
                     reader.onload = (function(theFile) {
                         return function(e) {
                           // Insertamos la imagen
                          document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
                         };
                     })(f);
-             
+
                     reader.readAsDataURL(f);
                   }
               }
-             
+
               document.getElementById('files').addEventListener('change', archivo, false);
       </script>
 @stop

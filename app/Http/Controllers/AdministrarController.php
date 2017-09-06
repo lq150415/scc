@@ -14,6 +14,7 @@ use sccventas\Material;
 use sccventas\Paquete;
 use sccventas\Empaquetado;
 use sccventas\Articulos;
+use Illuminate\Support\Facades\Auth; //component of autentication data
 
 class AdministrarController extends Controller
 {
@@ -22,6 +23,14 @@ class AdministrarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct(){
+        if(Auth::user()->NIV_USU == 0):
+
+        else:
+          abort(503);
+        endif;
+    }
     public function indexcat()
     {
         $categoria= Categoria::get();

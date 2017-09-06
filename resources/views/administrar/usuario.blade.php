@@ -1,4 +1,7 @@
 @extends('../layout')
+@section('title')
+	Administrador - Usuarios (Area restringida)
+@endsection
 	@section ('cuerpo')
 	<div class="panel panel-success cuerpo">
   <div class="panel-heading titleform" >ADMINISTRACION DE USUARIOS - SCC </div>
@@ -7,27 +10,7 @@
 <!-- Button trigger modal -->
 <fieldset>
 <legend>Usuarios</legend>
-<script type="text/javascript">
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
-</script>
-<script type="text/javascript">
-	function modificar(data1,data2,data3)
-	{
-		$('#nomusu').val(data1);
-		$("#nivusu option[value="+data2+"]").prop("selected","selected");
-		$('#idusu').val(data3);
-	}
-		function eliminar(data)
-	{
-		$('#ideli').val(data);
-	}
-  function contra(data)
-{
-  $('#idcon').val(data);
-}
 
-</script>
          <?php if (Session::has('mensaje2')):
             ?>
                   <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
@@ -37,14 +20,14 @@
                   <div class="mensajewarning alert alert-success"><label><?php echo Session::get('mensaje');?></label></div>
          <?php endif;?>
 </br>
-<div style="width:85%; margin-left:5%; ">
+<div style="width:90%; margin-left:5%; ">
 <table id="example" class="display" style="float:left;">
 	<thead >
 		<tr>
-			<th>NOMBRE</th>
-			<th>NICK DE USUARIO</th>
-      <th>NIVEL DE USUARIO</th>
-			<th data-orderable="false"> </th>
+			<th width="50%">NOMBRE</th>
+			<th width="10%">NICK DE USUARIO</th>
+      <th width="20%">NIVEL DE USUARIO</th>
+			<th width="20%" data-orderable="false"> </th>
 		</tr>
 	</thead>
 
@@ -187,6 +170,7 @@
                <input type="password" required class="form-control" name="conusu" id="conusu">
             </div>
             </div>
+					</div>
          <div class = "modal-footer" style="border-top: none;">
             <button type = "button" class = "btn btn-danger" data-dismiss = "modal"><span class="glyphicon glyphicon-remove" style="font-size: 10px; "></span>
                Cancelar
@@ -204,11 +188,27 @@
 </div><!-- /.modal -->
   </div>
 </div>
+	@endsection
+@section('script')
+	<script type="text/javascript">
+	              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
+	              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
+	</script>
+	<script type="text/javascript">
+		function modificar(data1,data2,data3)
+		{
+			$('#nomusu').val(data1);
+			$("#nivusu option[value="+data2+"]").prop("selected","selected");
+			$('#idusu').val(data3);
+		}
+			function eliminar(data)
+		{
+			$('#ideli').val(data);
+		}
+	  function contra(data)
+	{
+	  $('#idcon').val(data);
+	}
 
-
-
-
-
-
-
-	@stop
+	</script>
+@endsection

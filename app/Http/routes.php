@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('registrarclientes','VentasController@cliente');
 	Route::post('datos_pro','VentasController@datos_pro');
 	Route::get('pdf','VentasController@pdf');
+	Route::get('pdfgeneral','VentasController@pdfgeneral');
 	Route::get('graficos','VentasController@graficos');
 	Route::get('grafcol','VentasController@graficos3');
 	Route::get('grafcols','VentasController@graficos2');
@@ -82,7 +83,9 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('cargarcliente3','VentasController@cargarcliente3');
 	Route::post('cargardetalles','VentasController@cargardetalles');
 	  Route::post('cargarproductos','VentasController@cargarproductos');
-		Route:get('hojaprogramacion','MaterialController@hoja');
+		Route::get('hojaprogramacion','MaterialController@hoja');
+		Route::post('pdfhoja','MaterialController@pdfhoja');
+		Route::post('cargarmaterial','MaterialController@cargarmaterial');
 	  Route::post('cargarproductos2','VentasController@cargarproductos2');
     Route::get('tags', function (Illuminate\Http\Request  $request) {
         $term = $request->term ?: '';

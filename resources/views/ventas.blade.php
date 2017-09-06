@@ -1,28 +1,7 @@
 @extends ('layout')
 	@section ('cuerpo')
 
-  <script type="text/javascript">
-   $(document).ready(function(){
 
-   $("#tags").change(function () {
-           $("#tags option:selected").each(function () {
-            id = $(this).val();
-            $.post("cargarcliente", { id: id }, function(data){
-                $("#datoscl").html(data);
-            });
-        });
-       });
-   $("#categoria").change(function () {
-           $("#categoria option:selected").each(function () {
-            id = $(this).val();
-            $.post("cargarproductos", { id: id }, function(data){
-                $("#tablabody").html(data);
-            });
-        });
-       });
-   });
-
-  </script>
 	<div class="panel panel-info cuerpo">
   <div class="panel-heading titleform" >REGISTRO DE VENTAS - SCC </div>
   <div class="panel-body bodyform">
@@ -30,11 +9,7 @@
 <!-- Button trigger modal -->
 <fieldset>
 <legend>Clientes</legend>
-<script type="text/javascript">
 
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
-            </script>
          <?php if (Session::has('mensaje2')):
             ?>
                   <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
@@ -50,33 +25,6 @@
   </select>
   </div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        // inicializamos el plugin
-        $('#tags').select2({
-            // Activamos la opcion "Tags" del plugin
-            tags: true,
-            tokenSeparators: [','],
-            ajax: {
-                dataType: 'json',
-                url: '{{ url("tags") }}',
-                delay: 250,
-                data: function(params) {
-                    return {
-                        term: params.term
-                    }
-                    console.log(params);
-                },
-                processResults: function (data, page) {
-                  return {
-                    results: data
-                  };
-                  console.log(data);
-                },
-            }
-        });
-    });
-</script>
 
 <div class="form-group col-lg-2" >
 <button type="button" class="btn btn-success btn-circle btn-lg" data-toggle = "modal" data-target = "#myModal" title="Nuevo cliente"><i class="fa fa-plus"></i></button>
@@ -270,11 +218,61 @@
 </div><!-- /.modal -->
   </div>
 </div>
-
-
-
-
-
-
-
 	@stop
+@section('script')
+	<script type="text/javascript">
+	 $(document).ready(function(){
+
+	 $("#tags").change(function () {
+					 $("#tags option:selected").each(function () {
+						id = $(this).val();
+						$.post("cargarcliente", { id: id }, function(data){
+								$("#datoscl").html(data);
+						});
+				});
+			 });
+	 $("#categoria").change(function () {
+					 $("#categoria option:selected").each(function () {
+						id = $(this).val();
+						$.post("cargarproductos", { id: id }, function(data){
+								$("#tablabody").html(data);
+						});
+				});
+			 });
+	 });
+
+	</script>
+	<script type="text/javascript">
+
+							$(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
+							$(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
+						</script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+				// inicializamos el plugin
+				$('#tags').select2({
+						// Activamos la opcion "Tags" del plugin
+						tags: true,
+						tokenSeparators: [','],
+						ajax: {
+								dataType: 'json',
+								url: '{{ url("tags") }}',
+								delay: 250,
+								data: function(params) {
+										return {
+												term: params.term
+										}
+										console.log(params);
+								},
+								processResults: function (data, page) {
+									return {
+										results: data
+									};
+									console.log(data);
+								},
+						}
+				});
+		});
+	</script>
+
+@endsection

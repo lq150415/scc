@@ -1,16 +1,100 @@
+@-webkit-keyframes alerta
+{
+15%
+{
+-webkit-transform: translateX(5px);
+transform: translateX(5px);
+}
+30%
+{
+-webkit-transform: translateX(-5px);
+transform: translateX(-5px);
+}
+50%
+{
+-webkit-transform: translateX(3px);
+transform: translateX(3px);
+}
+65%
+{
+-webkit-transform: translateX(-3px);
+transform: translateX(-3px);
+}
+80%
+{
+-webkit-transform: translateX(2px);
+transform: translateX(2px);
+}
+100%
+{
+-webkit-transform: translateX(0);
+transform: translateX(0);
+}
+}
+@keyframes alerta
+{
+15%
+{
+-webkit-transform: translateX(5px);
+transform: translateX(5px);
+}
+30%
+{
+-webkit-transform: translateX(-5px);
+transform: translateX(-5px);
+}
+50%
+{
+-webkit-transform: translateX(3px);
+transform: translateX(3px);
+}
+65%
+{
+-webkit-transform: translateX(-3px);
+transform: translateX(-3px);
+}
+80%
+{
+-webkit-transform: translateX(2px);
+transform: translateX(2px);
+}
+100%
+{
+-webkit-transform: translateX(0);
+transform: translateX(0);
+}
+}
 .divjumbo{
-	border:2px; 
-	width:60%; 
-	margin-top:10%; 
-	margin-left:20%; 
-	padding:0px 12px 12px 12px; 
+	border:2px;
+	width:60%;
+	margin-top:10%;
+	margin-left:20%;
+	padding:0px 12px 12px 12px;
 	overflow: auto;
 }
 .divjumbo2{
-	border:2px; 
-	width:80%; 
-	margin-top:10%; 
-	margin-left:10%; 
-	padding:0px 12px 12px 12px; 
+	border:2px;
+	width:80%;
+	margin-top:10%;
+	margin-left:10%;
+	padding:0px 12px 12px 12px;
 	overflow: auto;
+}
+.alerta{
+	position:fixed;
+	z-index:1;
+	top:10px;
+	right:10px;
+	border-radius: 3px;
+	-webkit-animation: alerta 1s ease;
+	animation: alerta 1s ease;
+	-webkit-animation-iteration-count: 1;
+	animation-iteration-count: 1;
+}
+#imgLOAD{
+	top:20vw;
+	right: 0;
+	background-color: rgb(251, 251, 251);
+	width: 100vw;
+	height: 100vw;
 }

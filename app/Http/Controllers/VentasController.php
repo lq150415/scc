@@ -15,6 +15,7 @@ use sccventas\Venta;
 use sccventas\Vendido;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use DB;
 class VentasController extends Controller
 {
     /**
@@ -567,6 +568,157 @@ public function pdf(){
        $pdf->Output('reporteventas.pdf');
 
     }
+
+    public function pdfgeneral(){
+          $query= Articulo::join('categorias','ID_CAT','=','categorias.id')->join('vendidos','ID_PRO','=','articulos.id')->select('NOM_CAT','PRE_ART',DB::raw('SUM(CAN_VND) as total'))->groupBy('ID_CAT')->get();
+          $total= Vendido::sum('CAN_VND');
+          $categorias = Categoria::get();
+           $pdf = new TCPDF('P','mm', 'LETTER', true, 'UTF-8', false);
+           $pdf->SetTitle('Datos de ventas');
+           $pdf->setPrintHeader(false);
+           $pdf->setPrintFooter(false);
+           $pdf->SetAutoPageBreak(TRUE, 0);
+           $pdf->AddPage();
+           $pdf->Image('img/pdf.png', 190, 7, 22, 10, 'PNG', '', '', true, 720, '', false, false, false, false, false, false);
+           $pdf->SetFont('helvetica','B','11');
+             $pdf->SetXY(50, 10);
+             $pdf->Write(0,'DATOS DE VENTAS - SISTEMA CRISTIANO DE COMUNICACIONES','','',false);
+             $pdf->SetXY(15, 15);
+             $html =
+             '<style>
+           h1 {
+               color: navy;
+               font-family: times;
+               font-size: 24pt;
+               text-decoration: underline;
+           }
+           p.first {
+               color: #003300;
+               font-family: helvetica;
+               font-size: 12pt;
+           }
+           p.first span {
+               color: #006600;
+               font-style: italic;
+           }
+           p#second {
+               color: rgb(00,63,127);
+               font-family: times;
+               font-size: 12pt;
+               text-align: justify;
+           }
+           p#second > span {
+               background-color: #FFFFAA;
+           }
+           th.first {
+               color: #003300;
+               font-family: helvetica;
+               font-size: 8pt;
+
+               background-color: #ccffcc;
+           }
+           th.first-danger {
+               color: maroon;
+               font-family: helvetica;
+               font-size: 6px;
+               font-strecht: bold;
+               background-color: #ff6066;
+           }
+           th.second {
+               color: #6c3300;
+               font-family: helvetica;
+               font-size: 8pt;
+
+               background-color: #fbdb65;
+           }
+           tr.title{
+               background-color: #bfcfe4;
+           }
+           td {
+
+           }
+           td.second {
+               border: 2px dashed green;
+           }
+           div.test {
+               color: #000;
+               background-color: #bab3b2;
+               font-family: helvetica;
+               font-size: 10pt;
+               border-style: solid solid solid solid;
+               border-width: 1px 1px 1px 1px;
+               margin-top: 100pt;
+               text-align: center;
+           }
+           tr.title2{
+               background-color: #74e76a;
+           }
+           .fila{ text-align:right;   font-size:12px; }
+           .datos{
+             border: 1px #000 solid;
+           }
+           .lowercase {
+               text-transform: lowercase;
+           }
+           .uppercase {
+               text-transform: uppercase;
+           }
+           .capitalize {
+               text-transform: capitalize;
+           }
+       </style>
+          <font size="7"> <br/><br/><br/><br/><table class ="datos" border="1" cellspacing="0" cellpadding="3">
+         <tr class="fila" >
+         <th colspan="4" align="center" ><b>DATOS DE VENTAS</b></th>
+         </tr>
+         <tr class="fila">
+         <th rowspan="1" align="center" width="25%"><b>CATEGORIA</b></th>
+         <th rowspan="1" align="center" width="25%"><b>UNIDADES VENDIDAS</b></th>
+         <th rowspan="1" align="center" width="25%"><b>PORCENTAJE TOTAL</b></th>
+         <th rowspan="1" align="center" width="25%"><b>TOTAL EN BS.</b></th>
+         </tr>';
+        foreach ($categorias as $categoria ) {
+        $html=$html.'<tr >
+        <td class="fila">
+            '.$categoria->NOM_CAT.'
+        </td><td class="fila">
+        ';
+        foreach ($query as $q)
+        {
+          if($q->NOM_CAT == $categoria->NOM_CAT)
+          {
+            $html=$html.$q->total;
+          }
+        }
+        $html=$html.'</td><td class="fila">
+        ';
+        foreach ($query as $q)
+        {
+          if($q->NOM_CAT == $categoria->NOM_CAT)
+          {
+            $html=$html.round(($q->total*100/$total),2).' %';
+          }
+          
+        }
+        $html=$html.'</td><td class="fila">
+        ';
+        foreach ($query as $q)
+        {
+          if($q->NOM_CAT == $categoria->NOM_CAT)
+          {
+            $html=$html.$q->total*$q->PRE_ART;
+          }
+        }
+        $html=$html.'</td>
+        </tr>';
+        }
+        $html=$html.'</table >';
+        //dd($html);
+         $pdf->writeHTML($html, true, false, true, false, '');
+           $pdf->Output('reporteventas.pdf');
+
+        }
+
 
     public function regpaquete(Request $request)
     {

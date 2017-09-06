@@ -16,7 +16,7 @@ function detalles(data1,data2,data3,data4)
 {
 	$('#fecven2').val(data1);
 	$('#facven2').val(data2);
-	$('#nomcli2').val(data3)
+	$('#nomcli2').val(data3);
 	 id = data4;
 	 console.log(id);
 	$.post("cargardetalles", { id: id }, function(data){
@@ -104,14 +104,14 @@ function modificar(data1,data2,data3,data4,data5)
 									 <div class="form-group">
 				 <label for="ejemplo_email_3" class="col-lg-3 control-label">Fecha de venta</label>
 				 <div class="col-lg-9">
-					 <input type="date" name="fecven" readonly="yes" class="form-control" id="fecven">
+					 <input type="date" name="fecven" readonly="yes" class="form-control" id="fecven2">
 				 </div>
 			 </div>
 				<div class="form-group">
 				 <label for="ejemplo_password_3" class="col-lg-3 control-label">Numero de factura</label>
 				 <div class="col-lg-9">
-					 <input type="number" name="facven"  class="form-control" id="facven"
-									>
+					 <input type="number" name="facven"  class="form-control" id="facven2"
+									readonly>
 				 </div>
 				 </div>
 				 <div class="form-group">

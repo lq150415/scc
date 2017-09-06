@@ -1,4 +1,7 @@
 @extends('../layout')
+@section('title')
+	Administrador - Categorias (Area restringida)
+@endsection
 	@section ('cuerpo')
 	<div class="panel panel-info cuerpo">
   <div class="panel-heading titleform" >ADMINISTRACION DE CATEGORIAS - SCC </div>
@@ -7,31 +10,6 @@
 <!-- Button trigger modal -->
 <fieldset>
 <legend>Categorias</legend>
-<script type="text/javascript">
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
-</script>
-<script type="text/javascript">
-	function modificar(data1,data2,data3)
-	{
-		$('#nomcat').val(data1);
-		$('#descat').val(data2);
-		$('#idcat').val(data3);
-	}
-		function eliminar(data)
-	{
-		$('#ideli').val(data);
-	}
-
-</script>
-         <?php if (Session::has('mensaje2')):
-            ?>
-                  <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
-         <?php endif;?>
-         <?php if (Session::has('mensaje')):
-            ?>
-                  <div class="mensajewarning alert alert-success"><label><?php echo Session::get('mensaje');?></label></div>
-         <?php endif;?>
 </br>
 <div style="width:85%; margin-left:5%; ">
 <table id="example" class="display" style="float:left;">
@@ -149,11 +127,19 @@
 </div><!-- /.modal -->
   </div>
 </div>
-
-
-
-
-
-
-
 	@stop
+	@section('script')
+		<script type="text/javascript">
+			function modificar(data1,data2,data3)
+			{
+				$('#nomcat').val(data1);
+				$('#descat').val(data2);
+				$('#idcat').val(data3);
+			}
+				function eliminar(data)
+			{
+				$('#ideli').val(data);
+			}
+
+		</script>
+	@endsection

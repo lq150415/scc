@@ -7,11 +7,7 @@
 <!-- Button trigger modal -->
 <fieldset>
 <legend>Datos del cliente</legend>
-<div >
-<script type="text/javascript">
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
-            </script>
+<div>
          <?php if (Session::has('mensaje2')):
             ?>
                   <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
@@ -40,7 +36,7 @@
    <div class="form-group">
     <label for="ejemplo_password_3" class="col-lg-3 control-label">Apellido paterno</label>
     <div class="col-lg-9">
-      <input type="text" name="apa_usu" value="<?=old("apa_usu");?>" class="form-control" id="ejemplo_password_3" 
+      <input type="text" name="apa_usu" value="<?=old("apa_usu");?>" class="form-control" id="ejemplo_password_3"
              placeholder="Apellido paterno">
     </div>
     </div>
@@ -79,7 +75,7 @@
             <button type = "submit" class = "btn btn-primary" data-dismiss = "modal"><span class="glyphicon glyphicon-check"></span>
               Registrar cliente
             </button>
-            
+
             <button type = "button" class = "btn btn-danger"><span class="glyphicon glyphicon-trash"></span>
                Limpiar datos
             </button>
