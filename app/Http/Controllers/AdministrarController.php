@@ -52,6 +52,12 @@ class AdministrarController extends Controller
         $vendido= Vendido::get();
         return view('administrar.venta')->with('ventas',$venta)->with('vendidos',$vendido);
     }
+    public function indexpaq()
+    {
+        $venta= Venta::join('clientes','clientes.id','=','ID_CLI')->select('ventas.id','FEC_VEN','FAC_VEN','NOM_CLI','APA_CLI','AMA_CLI')->get();
+        $vendido= Vendido::get();
+        return view('administrar.paquete')->with('ventas',$venta)->with('vendidos',$vendido);
+    }
 
     public function modifcat(Request $request)
     {

@@ -1,4 +1,7 @@
 @extends('../layout')
+@section('title')
+	Administrador - Paquetes (Area restringida)
+@endsection
 	@section ('cuerpo')
 	<div class="panel panel-success cuerpo">
   <div class="panel-heading titleform" >ADMINISTRACION DE VENTAS - SCC </div>
@@ -7,49 +10,6 @@
 <!-- Button trigger modal -->
 <fieldset>
 <legend>Ventas</legend>
-<script type="text/javascript">
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
-</script>
-<script type="text/javascript">
-function detalles(data1,data2,data3,data4)
-{
-	$('#fecven2').val(data1);
-	$('#facven2').val(data2);
-	$('#nomcli2').val(data3);
-	 id = data4;
-	 console.log(id);
-	$.post("cargardetalles", { id: id }, function(data){
-			$("#detalles").html(data);
-	});
-}
-function modificar(data1,data2,data3,data4,data5)
-	{
-    $('#fecven').val(data1);
-    $('#facven').val(data2);
-    $("#tags option[value="+data4+"]").prop("selected","selected");
-	}
-		function eliminar(data)
-	{
-		$('#ideli').val(data);
-	}
-  $("#tags").change(function () {
-          $("#tags option:selected").each(function () {
-           id = $(this).val();
-           $.post("cargarcliente3", { id: id }, function(data){
-               $("#datoscl").html(data);
-           });
-       });
-      });
-</script>
-         <?php if (Session::has('mensaje2')):
-            ?>
-                  <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
-         <?php endif;?>
-         <?php if (Session::has('mensaje')):
-            ?>
-                  <div class="mensajewarning alert alert-success"><label><?php echo Session::get('mensaje');?></label></div>
-         <?php endif;?>
 </br>
 <div style="width:100%; margin-left:5%; ">
 <table id="example" class="display" style="float:left;">
@@ -268,11 +228,37 @@ function modificar(data1,data2,data3,data4,data5)
 </div><!-- /.modal -->
   </div>
 </div>
-
-
-
-
-
-
-
 	@stop
+	@section('script')
+		<script type="text/javascript">
+		function detalles(data1,data2,data3,data4)
+		{
+			$('#fecven2').val(data1);
+			$('#facven2').val(data2);
+			$('#nomcli2').val(data3);
+			 id = data4;
+			 console.log(id);
+			$.post("cargardetalles", { id: id }, function(data){
+					$("#detalles").html(data);
+			});
+		}
+		function modificar(data1,data2,data3,data4,data5)
+			{
+		    $('#fecven').val(data1);
+		    $('#facven').val(data2);
+		    $("#tags option[value="+data4+"]").prop("selected","selected");
+			}
+				function eliminar(data)
+			{
+				$('#ideli').val(data);
+			}
+		  $("#tags").change(function () {
+		          $("#tags option:selected").each(function () {
+		           id = $(this).val();
+		           $.post("cargarcliente3", { id: id }, function(data){
+		               $("#datoscl").html(data);
+		           });
+		       });
+		      });
+		</script>
+	@endsection

@@ -1,31 +1,25 @@
 @extends ('layout')
-	@section ('cuerpo')
-	<div class="panel panel-info cuerpo">
-  <div class="panel-heading titleform" >REGISTRO DE MATERIAL XTO-TV - SCC </div>
-  <div class="panel-body bodyform">
-<style>
+@section('title')
+	Registro de material - Sistema cristiano de comunicaciones
+@endsection
+@section('css')
+			<style>
           .thumb {
             height: 300px;
             border: 1px solid #000;
             margin: 10px 5px 0 0;
           }
-        </style>
+      </style>
+@endsection
+	@section ('cuerpo')
+	<div class="panel panel-info cuerpo">
+  <div class="panel-heading titleform" >REGISTRO DE MATERIAL XTO-TV - SCC </div>
+  <div class="panel-body bodyform">
+
 <!-- Button trigger modal -->
 <fieldset  style="border:1px #ddd solid; padding:10px;">
 <legend style="border:none; width:auto; margin-bottom:0px; padding:4px;" > Datos tecnicos</legend>
 <div>
-<script type="text/javascript">
-    $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
-    $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
-</script>
-         <?php if (Session::has('mensaje2')):
-            ?>
-                  <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
-         <?php endif;?>
-         <?php if (Session::has('mensaje')):
-            ?>
-                  <div class="mensajewarning alert alert-success"><label><?php echo Session::get('mensaje');?></label></div>
-         <?php endif;?>
        @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>
@@ -234,31 +228,32 @@
          </div>
 </div>
     </form>
-
-  <script>
-              function archivo(evt) {
-                  var files = evt.target.files; // FileList object
-
-                  // Obtenemos la imagen del campo "file".
-                  for (var i = 0, f; f = files[i]; i++) {
-                    //Solo admitimos imágenes.
-                    if (!f.type.match('image.*')) {
-                        continue;
-                    }
-
-                    var reader = new FileReader();
-
-                    reader.onload = (function(theFile) {
-                        return function(e) {
-                          // Insertamos la imagen
-                         document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
-                        };
-                    })(f);
-
-                    reader.readAsDataURL(f);
-                  }
-              }
-
-              document.getElementById('files').addEventListener('change', archivo, false);
-      </script>
 @stop
+@section('script')
+		<script>
+							function archivo(evt) {
+									var files = evt.target.files; // FileList object
+
+									// Obtenemos la imagen del campo "file".
+									for (var i = 0, f; f = files[i]; i++) {
+										//Solo admitimos imágenes.
+										if (!f.type.match('image.*')) {
+												continue;
+										}
+
+										var reader = new FileReader();
+
+										reader.onload = (function(theFile) {
+												return function(e) {
+													// Insertamos la imagen
+												 document.getElementById("list").innerHTML = ['<img class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+												};
+										})(f);
+
+										reader.readAsDataURL(f);
+									}
+							}
+
+							document.getElementById('files').addEventListener('change', archivo, false);
+			</script>
+@endsection

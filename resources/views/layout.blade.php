@@ -7,11 +7,11 @@
 		{!! Html::style('plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') !!}
 		{!! Html::style('css/sistemalaravel.css') !!}
 		{!! Html::style('assets/css/menulateral.css') !!}
-		{!! Html::style('select2/css/select2.css') !!}
 		{!! Html::style('font-awesome-4.6.3/css/font-awesome.min.css') !!}
 		{!! Html::style('dist/css/AdminLTE.min.css') !!}
 		{!! Html::style('dist/css/skins/_all-skins.min.css') !!}
 		{!! Html::style('css/table/jquery.dataTables.css') !!}
+		{!! Html::style('select2/css/select2.css') !!}
 		{!! Html::style('assets/css/form.css') !!}
 		{!! Html::style('css/form.css') !!}
 		@yield('css')

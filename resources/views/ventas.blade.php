@@ -1,6 +1,8 @@
 @extends ('layout')
+@section('title')
+	Registro de ventas - Sistema cristiano de comunicaciones
+@endsection
 	@section ('cuerpo')
-
 
 	<div class="panel panel-info cuerpo">
   <div class="panel-heading titleform" >REGISTRO DE VENTAS - SCC </div>
@@ -9,25 +11,16 @@
 <!-- Button trigger modal -->
 <fieldset>
 <legend>Clientes</legend>
-
-         <?php if (Session::has('mensaje2')):
-            ?>
-                  <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
-         <?php endif;?>
-         <?php if (Session::has('mensaje')):
-            ?>
-                  <div class="mensajewarning alert alert-success"><label><?php echo Session::get('mensaje');?></label></div>
-         <?php endif;?>
 <div style="width:100%;">
 <div class="form-group col-lg-10" >
-  <select class="form-control" id="tags"  name="tags[]" >
+  <select class="form-control" id="tags"  name="tags[]" style="width:100%">
 
   </select>
   </div>
 
 
 <div class="form-group col-lg-2" >
-<button type="button" class="btn btn-success btn-circle btn-lg" data-toggle = "modal" data-target = "#myModal" title="Nuevo cliente"><i class="fa fa-plus"></i></button>
+<button type="button" class="btn btn-success " data-toggle = "modal" data-target = "#myModal" title="Nuevo cliente"><i class="fa fa-plus"></i> Cliente</button>
 
 </div>
 
@@ -50,7 +43,7 @@
     <tr>
       <td><input class="form-control" required type="date" name="fec_ven"></td>
       <td><input class="form-control" required type="number" name="fac_ven" placeholder="Numero de factura"></td>
-      <td><button type="button" class="btn btn-success btn-circle btn-lg" data-toggle = "modal" data-target = "#myModal2" title="Agregar producto"><i class="fa fa-plus"></i></button>
+      <td><button type="button" class="btn btn-info" data-toggle = "modal" data-target = "#myModal2" title="Agregar producto"><i class="fa fa-plus"></i> Añadir Producto</button>
 </td>
     </tr>
 			</table>
@@ -192,7 +185,7 @@
          <div class = "modal-body">
           <div class="form-group col-lg-9">
             <select class="form-control" id="categoria" name="cat_ven">
-              <option value="">Seleccione</option>
+              <option value="">Seleccione categoria de producto</option>
                 <?php foreach ($categorias as $categoria){
           ?>
           <option value="{{$categoria->id}}">{{$categoria->NOM_CAT}}</option>

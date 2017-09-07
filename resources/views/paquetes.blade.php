@@ -1,38 +1,12 @@
 @extends ('layout')
+@section('title')
+	Registro de paquetes - Sistema cristiano de comunicaciones
+@endsection
 	@section ('cuerpo')
-	<script type="text/javascript">
-	 $(document).ready(function(){
 
-	 $("#categoria").change(function () {
-					 $("#categoria option:selected").each(function () {
-						id = $(this).val();
-						$.post("cargarproductos2", { id: id }, function(data){
-								$("#tablabody").html(data);
-						});
-				});
-			 });
-	 });
-
-	</script>
 	<div class="panel panel-info cuerpo">
 	<div class="panel-heading titleform" >REGISTRO DE PAQUETES </div>
 	<div class="panel-body bodyform">
-
-	<!-- Button trigger modal -->
-
-	<script type="text/javascript">
-
-							$(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
-							$(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
-						</script>
-				 <?php if (Session::has('mensaje2')):
-						?>
-									<div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
-				 <?php endif;?>
-				 <?php if (Session::has('mensaje')):
-						?>
-									<div class="mensajewarning alert alert-success"><label><?php echo Session::get('mensaje');?></label></div>
-				 <?php endif;?>
 <fieldset>
 <div class="table-responsive">
 	<legend>DATOS DE PAQUETE</legend>
@@ -44,7 +18,7 @@
     <tr>
       <td><input class="form-control" type="text" name="nom_paq"  placeholder="Nombre comercial del paquete" required="yes"></td>
       <td><input class="form-control" type="number" step="0.1" name="pre_paq" placeholder="Precio total del paquete" required="yes"></td>
-      <td><button type="button" class="btn btn-success btn-circle btn-lg" data-toggle = "modal" data-target = "#myModal2" title="Agregar producto"><i class="fa fa-plus"></i></button>
+      <td><button type="button" class="btn btn-info" data-toggle = "modal" data-target = "#myModal2" title="Agregar producto"><i class="fa fa-plus"></i> Añadir producto</button>
 </td>
     </tr>
 			</table>
@@ -128,3 +102,19 @@
   </div>
 </div>
 @stop
+@section('script')
+	<script type="text/javascript">
+	 $(document).ready(function(){
+
+	 $("#categoria").change(function () {
+					 $("#categoria option:selected").each(function () {
+						id = $(this).val();
+						$.post("cargarproductos2", { id: id }, function(data){
+								$("#tablabody").html(data);
+						});
+				});
+			 });
+	 });
+
+	</script>
+@endsection

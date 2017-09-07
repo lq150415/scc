@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('admincat',['as'=>'admincat','uses'=>'AdministrarController@indexcat']);
 	Route::get('admincli',['as'=>'admincli','uses'=>'AdministrarController@indexcli']);
 	Route::get('adminven',['as'=>'adminven','uses'=>'AdministrarController@indexven']);
+	Route::get('adminpaq',['as'=>'adminpaq','uses'=>'AdministrarController@indexpaq']);
 
 	Route::post('modifcat','AdministrarController@modifcat');
 	Route::post('elicat','AdministrarController@elicat');

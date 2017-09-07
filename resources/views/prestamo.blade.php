@@ -1,4 +1,7 @@
 @extends ('layout')
+@section('title')
+	Registro de prestamo de material - Sistema cristiano de comunicaciones
+@endsection
 	@section ('cuerpo')
 	<div class="panel panel-info cuerpo">
   <div class="panel-heading titleform" >REGISTRO DE PRESTAMO DE MATERIAL - SCC </div>
@@ -7,46 +10,29 @@
 <!-- Button trigger modal -->
 <fieldset>
 <legend>Prestamo</legend>
-<script type="text/javascript">
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeIn(2500); },0000); });
-              $(document).ready(function() { setTimeout(function(){ $(".mensajewarning").fadeOut(2500); },5000); });
-</script>
-<script type="text/javascript">
-	function enviaid(data1){
-		$('#id').val(data1);
-	}
-</script>
-         <?php if (Session::has('mensaje2')):
-            ?>
-                  <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
-         <?php endif;?>
-         <?php if (Session::has('mensaje')):
-            ?>
-                  <div class="mensajewarning alert alert-success"><label><?php echo Session::get('mensaje');?></label></div>
-         <?php endif;?>
 <div style="width:15%;">
 <button class = "btn btn-success" data-toggle = "modal" data-target = "#myModal"> <span class="glyphicon glyphicon-plus"></span>
   Nuevo Prestamo
 </button></div>
 </br>
-<div style="width:85%; margin-left:5%; ">
+<div style="width:90%; margin-left:5%; ">
 <table id="example" class="table table-hover" style="float:left;">
 	<thead >
 		<tr>
 			<th width="25%">NOMBRE</th>
-			<th width="20%">FECHA <br/> INICIAL</th>
-      		<th width="20%">FECHA <br/> FINAL</th>
+			<th width="8%">FECHA <br/> INICIAL</th>
+      <th width="7%">FECHA <br/> FINAL</th>
 			<th width="35%">MATERIAL</th>
-			<th >ESTADO</th>	
-			<th data-orderable="false">ACCION</th>	
+			<th width="5%">ESTADO</th>
+			<th width="5%"data-orderable="false">ACCION</th>
 		</tr>
 	</thead>
-	
+
 	<tbody style="font-size:11px;">
 		<?php if(count($prestamos)>0){?>
       <tr>
-      <?php  
-			foreach ($prestamos as $prestamo):		
+      <?php
+			foreach ($prestamos as $prestamo):
 				if($prestamo->EST_PRE==0){
 					$estado='PENDIENTE';
 					}else{
@@ -61,34 +47,34 @@
             			<?php }else{ ?>
             			<th class="success"><?php echo $estado;?></th>
             			<?php } if($prestamo->EST_PRE==0){?>
-            			<th><button type="button" onclick="javascript:enviaid(<?php echo $prestamo->id;?>)" class="btn btn-primary" data-toggle = "modal" data-target = "#myModal2"><span class="glyphicon glyphicon-check"></span> Devolucion</button></th>	
+            			<th><button type="button" onclick="javascript:enviaid(<?php echo $prestamo->id;?>)" class="btn btn-primary" data-toggle = "modal" data-target = "#myModal2"><span class="glyphicon glyphicon-check"></span> Devolucion</button></th>
 						<?php }else{ ?>
 						<th>No hay acciones</th>
 						<?php } ?>
-		</tr>			
+		</tr>
 				<?php	endforeach; }
-			
+
 			?>
 	</tbody>
 </table>
 </div>
 </form>
-<div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog" 
+<div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog"
    aria-labelledby = "myModalLabel" aria-hidden = "true">
-   
+
    <div class = "modal-dialog">
       <div class = "modal-content">
-         
+
          <div class = "modal-header">
             <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
                   &times;
             </button>
-            
+
             <h4 class = "modal-title" id = "myModalLabel">
                Nuevo prestamo
             </h4>
          </div>
-         
+
          <div class = "modal-body">
             <form class="form-horizontal" method="POST" action="registrarprestamos">
             	 <div class="form-group">
@@ -122,31 +108,31 @@
              placeholder="Observaciones acerca del material"></textarea>
     </div>
     </div>
-  
+
 
          </div>
-         
+
          <div class = "modal-footer">
             <button type = "button" class = "btn btn-danger" data-dismiss = "modal">
               Cancelar
             </button>
-            
+
             <button type = "submit" class = "btn btn-primary">
                Guardar
             </button>
             </form>
          </div>
-         
+
       </div><!-- /.modal-content -->
    </div><!-- /.modal-dialog -->
-  
+
 </div><!-- /.modal -->
-<div class = "modal fade" id = "myModal2" tabindex = "-1" role = "dialog" 
+<div class = "modal fade" id = "myModal2" tabindex = "-1" role = "dialog"
    aria-labelledby = "myModalLabel" aria-hidden = "true">
-   
+
    <div class = "modal-dialog">
       <div class = "modal-content">
-         
+
          <div class = "modal-header">
             <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
                   &times;
@@ -159,12 +145,12 @@
          <div class = "modal-body">
          <input type="hidden" id="id" name="id">
             <div class=" ">¿Esta seguro de cambiar el estado del prestamo?</div>
-         
+
          <div class = "modal-footer" style="border-top: none;">
             <button type = "button" class = "btn btn-danger" data-dismiss = "modal"><span class="glyphicon glyphicon-remove" style="font-size: 10px; "></span>
                Cancelar
             </button>
-            
+
             <button type = "submit" class = "btn btn-success"><span style="font-size: 10px; " class="glyphicon glyphicon-check"></span>
                Aceptar
             </button>
@@ -173,7 +159,14 @@
          </form>
       </div><!-- /.modal-content -->
    </div><!-- /.modal-dialog -->
-  
+
 </div><!-- /.modal -->
 </div>
 @stop
+@section('script')
+	<script type="text/javascript">
+		function enviaid(data1){
+			$('#id').val(data1);
+		}
+	</script>
+@endsection
