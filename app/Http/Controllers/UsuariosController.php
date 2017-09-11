@@ -7,6 +7,7 @@ use sccventas\User;
 use Validator;
 use sccventas\Http\Requests;
 use sccventas\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth; //component of autentication data
 
 class UsuariosController extends Controller
 {
@@ -15,6 +16,13 @@ class UsuariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct(){
+         if(Auth::user()->NIV_USU == 0):
+
+         else:
+           abort(503);
+         endif;
+    }
     public function index()
     {
         return view('usuarios');
@@ -27,7 +35,7 @@ class UsuariosController extends Controller
      */
     public function create()
     {
-        
+
     }
 
     /**
@@ -37,7 +45,7 @@ class UsuariosController extends Controller
      * @return \Illuminate\Http\Response
      */
       public function store(Request $request)
-    { 
+    {
          $messages = array(
             'nic_usu.unique' => '¡Ese nick ya esta en uso, por favor utiliza otro!',
             'nom_usu.required'=>'El nombre es requerido',
@@ -50,18 +58,18 @@ class UsuariosController extends Controller
             'nom_usu.regex'=>'El nombre solo debe tener letras',
             'apa_usu.regex'=>'El apellido paterno solo debe tener letras',
             'ama_usu.regex'=>'El apellido materno solo debe tener letras',
-           
+
          );
-         
+
          $validator = Validator::make($request->all(), [
             'nom_usu' => 'required|regex:/^[a-z\s]+$/i',
             'apa_usu' => 'required|regex:/^[a-z\s]+$/i',
             'ama_usu' => 'required|regex:/^[a-z\s]+$/i',
             'nic_usu' => 'required|unique:users',
             'niv_usu' => 'required|integer',
-            'pas_usu' => 'required', 
+            'pas_usu' => 'required',
         ],$messages);
-        
+
 
          $request->flash();
         $usuario= new User;

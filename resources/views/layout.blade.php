@@ -35,7 +35,7 @@
 	@if (Session::has('mensaje2'))
 					 <div class="alerta mensajewarning alert alert-danger  alert-dismissable fade in" >
 							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-								<strong>Error!</strong> {{Session::get('mensaje2')}}
+								<strong>Alerta!</strong> {{Session::get('mensaje2')}}
 					 </div>
 	@endif
 	@if (Session::has('mensaje'))

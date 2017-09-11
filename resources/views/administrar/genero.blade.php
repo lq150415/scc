@@ -1,46 +1,40 @@
 @extends('../layout')
 @section('title')
-	Administrador - Usuarios (Area restringida)
+	Administrador - Generos (Area restringida)
 @endsection
 	@section ('cuerpo')
 	<div class="panel panel-success cuerpo">
-  <div class="panel-heading titleform" >ADMINISTRACION DE USUARIOS - SCC </div>
+  <div class="panel-heading titleform" >ADMINISTRACION DE CLIENTES - SCC </div>
   <div class="panel-body bodyform">
 
 <!-- Button trigger modal -->
 <fieldset>
-<legend>Usuarios</legend>
+<legend>Clientes</legend>
 </br>
-<div style=" margin-left:5%; ">
+<div style="width:95%; margin-left:5%; ">
 <table id="example" class="display" style="float:left;">
 	<thead >
 		<tr>
-			<th >NOMBRE</th>
-			<th >NICK DE USUARIO</th>
-      <th >NIVEL DE USUARIO</th>
-			<th data-orderable="false" width="120%"> </th>
+			<th>NOMBRE DEL CLIENTE</th>
+			<th>TELEFONO</th>
+      <th >DIRECCION</th>
+      <th>CORREO</th>
+			<th width="15%" data-orderable="false"> </th>
 		</tr>
 	</thead>
 
 	<tbody style="font-size:11px;">
 		<tr class="table table-hover">
 		<?php
-					foreach ($usuarios as $usuario):
+					foreach ($clientes as $cliente):
           ?>
-						<th><?php echo $usuario->NOM_USU.' '.$usuario->APA_USU.' '.$usuario->AMA_USU;?></th>
-						<th><?php echo $usuario->NIC_USU;?></th>
-            <th><?php
-              if($usuario->NIV_USU==0){
-                echo 'ADMINISTRADOR';
-              }else{
-                echo 'USUARIO COMUN';
-              }?> </th>
-						<th style=" width:85px; ">
-							<?php if($usuario->id==Auth::user()->id){ ?>
-								<h1 class="label label-warning">No hay acciones disponibles</h1><th>
-							<?php }else{ ?>
-								<button data-toggle = "modal" data-target = "#myModal2" onClick="modificar(<?php echo "'$usuario->NIC_USU'".','."'$usuario->NIV_USU'".','."'$usuario->id"."'";?>);" class="btn btn-primary" title="Modificar datos de usuario"> <span class="glyphicon glyphicon-pencil" style="font-size:12px;"> </span> </button> <button onClick="contra(<?php echo $usuario->id;?>);" data-toggle = "modal" data-target = "#myModal4" class="btn btn-warning" title="Modificar contraseña"> <span class="fa fa-key"  style="font-size:12px;"></span> </button> <button data-toggle = "modal" data-target = "#myModal3" onClick="eliminar(<?php echo $usuario->id;?>);" class="btn btn-danger" title="Eliminar usuario"> <span class="glyphicon glyphicon-trash"  style="font-size:12px;"></span> </button> </th>
-<?php }?>
+						<th><?php echo $cliente->NOM_CLI.' '.$cliente->APA_CLI.' '.$cliente->AMA_CLI;?></th>
+						<th><?php echo $cliente->TEL_CLI;?></th>
+            <th><?php echo $cliente->DIR_CLI;?></th>
+            <th><?php echo $cliente->EMA_CLI;?></th>
+            <th style=" width:85px; ">
+								<button data-toggle = "modal" data-target = "#myModal2" onClick="modificar(<?php echo "'$cliente->NOM_CLI'".','."'$cliente->APA_CLI'".','."'$cliente->AMA_CLI'".','."'$cliente->TEL_CLI'".','."'$cliente->EMA_CLI'".','."'$cliente->DIR_CLI'".','."'$cliente->id"."'";?>);" class="btn btn-primary" title="Modificar datos de cliente"> <span class="glyphicon glyphicon-pencil" style="font-size:12px;"> </span> </button> <button data-toggle = "modal" data-target = "#myModal3" onClick="eliminar(<?php echo $cliente->id;?>);" class="btn btn-danger" title="Eliminar cliente"> <span class="glyphicon glyphicon-trash"  style="font-size:12px;"></span> </button> </th>
+
               </tr>
 				<?php endforeach;
         ?>
@@ -62,28 +56,58 @@
             </button>
 
             <h4 class = "modal-title" id = "myModalLabel">
-               Modificar usuario
+               Modificar cliente
             </h4>
          </div>
          <div class = "modal-body">
-         		<form class="form-horizontal" method="POST" action="modifusu">
-				 <input type="hidden" id="idusu" name="idusu" />
+         		<form class="form-horizontal" method="POST" action="modifcli">
+				 <input type="hidden" id="idcli" name="idcli" />
 				 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-				 <div class="form-group">
-            	<label class="col-lg-3 control-label">Nick de usuario :</label>
-         		<div class="col-md-8">
-           		 <input required class="form-control" name="nomusu" id="nomusu">
-        		</div>
-         		</div>
+                    <div class="form-group">
+          <label for="ejemplo_email_3" class="col-lg-3 control-label">Nombre</label>
+          <div class="col-lg-9">
+            <input type="text" name="nom_usu"  class="form-control" id="nomcli"
+                   placeholder="Nombre del cliente">
+          </div>
+        </div>
          <div class="form-group">
-            <label class="col-lg-3 control-label">Nivel :</label>
-         <div class="col-md-8">
-           <select class="form-control" id="nivusu" name="nivusu">
-             <option value="0">ADMINISTRADOR</option>
-             <option value="1">USUARIO COMUN</option>
-           </select>
-         </div>
-         </div>
+          <label for="ejemplo_password_3" class="col-lg-3 control-label">Apellido paterno</label>
+          <div class="col-lg-9">
+            <input type="text" name="apa_usu"  class="form-control" id="apacli"
+                   placeholder="Apellido paterno">
+          </div>
+          </div>
+          <div class="form-group">
+          <label for="ejemplo_email_3" class="col-lg-3 control-label">Apellido materno</label>
+          <div class="col-lg-9">
+            <input type="text" name="ama_usu" class="form-control"  id="amacli"
+                   placeholder="Apellido materno">
+          </div>
+          </div>
+          <div class="form-group">
+          <label for="ejemplo_email_3" class="col-lg-3 control-label">Telefono</label>
+          <div class="col-lg-9">
+            <input type="tel"  name="tel_usu" class="form-control" id="telcli"
+                   placeholder="Telefono del cliente">
+
+          </div>
+          </div>
+          <div class="form-group">
+          <label for="ejemplo_email_3" class="col-lg-3 control-label">E-mail</label>
+          <div class="col-lg-9">
+            <input type="email" name="ema_usu"  class="form-control" id="emacli"
+                   placeholder="Direccion e-mail del cliente">
+
+          </div>
+          </div>
+
+          <div class="form-group">
+          <label for="ejemplo_email_3" class="col-lg-3 control-label">Direccion</label>
+          <div class="col-lg-9">
+          <textarea type="text" name="dir_usu" class="form-control" id="dircli"
+                   placeholder="Direccion de cliente"></textarea>
+          </div>
+          </div>
 
          <input type="hidden" id="idalm">
          <div class = "modal-footer" style="border-top: 0;">
@@ -116,7 +140,7 @@
                Confirmar eliminacion
             </h4>
          </div>
-         <form action="eliusu" method="POST">
+         <form action="elicli" method="POST">
          <div class = "modal-body">
          <input type="hidden" id="ideli" name="ideli">
             <div class=" ">Desea eliminar el elemento?</div>
@@ -161,7 +185,6 @@
                <input type="password" required class="form-control" name="conusu" id="conusu">
             </div>
             </div>
-					</div>
          <div class = "modal-footer" style="border-top: none;">
             <button type = "button" class = "btn btn-danger" data-dismiss = "modal"><span class="glyphicon glyphicon-remove" style="font-size: 10px; "></span>
                Cancelar
@@ -179,24 +202,22 @@
 </div><!-- /.modal -->
   </div>
 </div>
-	@endsection
+	@stop
 @section('script')
-
 	<script type="text/javascript">
-		function modificar(data1,data2,data3)
+		function modificar(data1,data2,data3,data4,data5,data6,data7)
 		{
-			$('#nomusu').val(data1);
-			$("#nivusu option[value="+data2+"]").prop("selected","selected");
-			$('#idusu').val(data3);
+			$('#nomcli').val(data1);
+	    $('#apacli').val(data2);
+	    $('#amacli').val(data3);
+	    $('#telcli').val(data4);
+	    $('#emacli').val(data5);
+	    $('#dircli').val(data6);
+			$('#idcli').val(data7);
 		}
 			function eliminar(data)
 		{
 			$('#ideli').val(data);
 		}
-	  function contra(data)
-	{
-	  $('#idcon').val(data);
-	}
-
 	</script>
 @endsection

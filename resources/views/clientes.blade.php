@@ -1,4 +1,7 @@
 @extends ('layout')
+@section('title')
+	Clientes - Sistema Cristiano de Comunicaciones
+@endsection
 	@section ('cuerpo')
 	<div class="panel panel-info cuerpo">
   <div class="panel-heading titleform" >REGISTRO DE CLIENTES - SCC </div>
@@ -8,14 +11,7 @@
 <fieldset>
 <legend>Datos del cliente</legend>
 <div>
-         <?php if (Session::has('mensaje2')):
-            ?>
-                  <div class="mensajewarning alert alert-danger" ><label><?php echo Session::get('mensaje2');?></label></div>
-         <?php endif;?>
-         <?php if (Session::has('mensaje')):
-            ?>
-                  <div class="mensajewarning alert alert-success"><label><?php echo Session::get('mensaje');?></label></div>
-         <?php endif;?>
+        
        @if (count($errors) > 0)
     <div class="alert alert-danger">
         <ul>

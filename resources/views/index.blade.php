@@ -1,4 +1,7 @@
 @extends ('layout')
+@section('title')
+	Dashboard - Sistema Cristiano de Comunicaciones
+@endsection
 	@section ('cuerpo')
 	<div class="panel bienvenida">
 	<div class="panel panel-primary panel1">
@@ -39,12 +42,5 @@
    		?>
   	</div>
 	</div>
-
 	</div>
-
-
-
-
-
-
 	@stop
