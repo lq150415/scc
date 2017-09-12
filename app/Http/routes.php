@@ -50,7 +50,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('email','EnviarController@index');
 	Route::get('email2','EnviarController@index2');
 	Route::get('material',['as'=>'material','uses'=>'MaterialController@index']);
-	Route::resource('email','EnviarController');
 	Route::post('registrarcat','MaterialController@registrarcategoria');
 
 	Route::get('adminusu',['as'=>'adminusu','uses'=>'AdministrarController@indexusu']);
