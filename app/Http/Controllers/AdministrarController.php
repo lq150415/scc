@@ -14,6 +14,9 @@ use sccventas\Material;
 use sccventas\Paquete;
 use sccventas\Empaquetado;
 use sccventas\Articulos;
+use sccventas\Genero;
+use sccventas\Archivo;
+use sccventas\Procedencia;
 use Illuminate\Support\Facades\Auth; //component of autentication data
 
 class AdministrarController extends Controller
@@ -58,6 +61,32 @@ class AdministrarController extends Controller
         $vendido= Vendido::get();
         return view('administrar.paquete')->with('ventas',$venta)->with('vendidos',$vendido);
     }
+    public function indexpub()
+    {
+        $venta= Venta::join('clientes','clientes.id','=','ID_CLI')->select('ventas.id','FEC_VEN','FAC_VEN','NOM_CLI','APA_CLI','AMA_CLI')->get();
+        $vendido= Vendido::get();
+        return view('administrar.publicidad')->with('ventas',$venta)->with('vendidos',$vendido);
+    }
+    public function indexgen()
+    {
+        $genero= Genero::get();
+        return view('administrar.genero')->with('generos',$genero);
+    }
+    public function indexart()
+    {
+        $venta= Venta::join('clientes','clientes.id','=','ID_CLI')->select('ventas.id','FEC_VEN','FAC_VEN','NOM_CLI','APA_CLI','AMA_CLI')->get();
+        $vendido= Vendido::get();
+        return view('administrar.publicidad')->with('ventas',$venta)->with('vendidos',$vendido);
+    }
+    public function indexmat()
+    {
+      $categorias=Categoria::get();
+      $archivo=Archivo::get();
+      $procedencias=Procedencia::get();
+      $genero=Genero::get();
+      $material= Material::join('users','users.id','=','material.ID_USU')->join('archivo','archivo.id','=','material.ID_ARC')->join('procedencias','procedencias.id','=','material.ID_PRO')->join('genero','genero.id','=','material.ID_GEN')->get();
+        return view('administrar.material')->with('procedencias',$procedencias)->with('archivos',$archivo)->with('categorias',$categorias)->with('generos',$genero)->with('materiales',$material);
+    }
 
     public function modifcat(Request $request)
     {
@@ -68,6 +97,25 @@ class AdministrarController extends Controller
         $categoria->save();
         $mensaje='Categoria modificada correctamente';
         return redirect()->route('admincat')->with('mensaje',$mensaje);
+    }
+    public function modifgen(Request $request)
+    {
+        $id=$request->input('idgen');
+        $genero= Genero::find($id);
+        $genero->titulo = $request->input('titulo');
+        $genero->activo = $request->input('active');
+        $genero->save();
+        $mensaje='Genero modificado correctamente';
+        return redirect()->route('admingen')->with('mensaje',$mensaje);
+    }
+    public function registrargen(Request $request)
+    {
+        $genero= new Genero;
+        $genero->titulo = $request->input('titulo');
+        $genero->activo = $request->input('active');
+        $genero->save();
+        $mensaje='Genero registrado correctamente';
+        return redirect()->route('admingen')->with('mensaje',$mensaje);
     }
 
     public function modifcli(Request $request)
@@ -112,6 +160,13 @@ class AdministrarController extends Controller
         $categoria= Categoria::where('id','=',$id)->delete();
         $mensaje="Categoria eliminada";
               return redirect()->route('admincat')->with('mensaje2',$mensaje);
+    }
+    public function eligen(Request $request)
+    {
+        $id=$request->input('ideli');
+        $genero= Genero::where('id','=',$id)->delete();
+        $mensaje="Genero eliminado";
+        return redirect()->route('admingen')->with('mensaje2',$mensaje);
     }
     public function elicli(Request $request)
     {

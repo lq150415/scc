@@ -7,7 +7,9 @@
 	<div class="panel panel-primary panel1">
   		<div class="panel-body texto1 ">
     	<?php  $ven=\sccventas\Vendido::select(\DB::raw('sum( CAN_VND * PRE_ART) as SUMA'))->join('articulos','ID_PRO','=','articulos.id')->groupBy('ID_VEN')->orderBy('SUMA','DESC')->first();
-			echo $ven->SUMA;?>	Bs.
+			if(isset($ven)):
+			echo $ven->SUMA;
+			endif;?>	Bs.
   		</div>
   	<div class="panel-heading ">MAYOR VENTA</div>
 	</div>

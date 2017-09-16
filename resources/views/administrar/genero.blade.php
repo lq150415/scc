@@ -4,41 +4,47 @@
 @endsection
 	@section ('cuerpo')
 	<div class="panel panel-success cuerpo">
-  <div class="panel-heading titleform" >ADMINISTRACION DE CLIENTES - SCC </div>
+  <div class="panel-heading titleform" >ADMINISTRACION DE GENEROS - SCC </div>
   <div class="panel-body bodyform">
 
 <!-- Button trigger modal -->
 <fieldset>
-<legend>Clientes</legend>
+<legend>GENEROS</legend>
+<button type="button"  data-toggle = "modal" data-target = "#myModal" class="btn btn-success">Registrar nuevo genero</button>
 </br>
-<div style="width:95%; margin-left:5%; ">
+</br>
+<div style=" margin-left:5%; ">
 <table id="example" class="display" style="float:left;">
 	<thead >
 		<tr>
-			<th>NOMBRE DEL CLIENTE</th>
-			<th>TELEFONO</th>
-      <th >DIRECCION</th>
-      <th>CORREO</th>
+			<th>TITULO</th>
+			<th>ACTIVO</th>
 			<th width="15%" data-orderable="false"> </th>
 		</tr>
 	</thead>
 
 	<tbody style="font-size:11px;">
+		@if (isset($generos))
+
 		<tr class="table table-hover">
 		<?php
-					foreach ($clientes as $cliente):
+					foreach ($generos as $gen):
           ?>
-						<th><?php echo $cliente->NOM_CLI.' '.$cliente->APA_CLI.' '.$cliente->AMA_CLI;?></th>
-						<th><?php echo $cliente->TEL_CLI;?></th>
-            <th><?php echo $cliente->DIR_CLI;?></th>
-            <th><?php echo $cliente->EMA_CLI;?></th>
+
+            <th><?php echo $gen->titulo;?></th>
+            <th
+							@if ($gen->activo==1)
+								class="success">SI
+							@else
+								class="danger">NO
+							@endif</th>
             <th style=" width:85px; ">
-								<button data-toggle = "modal" data-target = "#myModal2" onClick="modificar(<?php echo "'$cliente->NOM_CLI'".','."'$cliente->APA_CLI'".','."'$cliente->AMA_CLI'".','."'$cliente->TEL_CLI'".','."'$cliente->EMA_CLI'".','."'$cliente->DIR_CLI'".','."'$cliente->id"."'";?>);" class="btn btn-primary" title="Modificar datos de cliente"> <span class="glyphicon glyphicon-pencil" style="font-size:12px;"> </span> </button> <button data-toggle = "modal" data-target = "#myModal3" onClick="eliminar(<?php echo $cliente->id;?>);" class="btn btn-danger" title="Eliminar cliente"> <span class="glyphicon glyphicon-trash"  style="font-size:12px;"></span> </button> </th>
+								<button data-toggle = "modal" data-target = "#myModal2" onClick="modificar(<?php echo "'$gen->titulo'".','."'$gen->activo'".','."'$gen->id"."'";?>);" class="btn btn-primary" title="Modificar datos de genero"> <span class="glyphicon glyphicon-pencil" style="font-size:12px;"> </span> </button> <button data-toggle = "modal" data-target = "#myModal3" onClick="eliminar(<?php echo $gen->id;?>);" class="btn btn-danger" title="Eliminar cliente"> <span class="glyphicon glyphicon-trash"  style="font-size:12px;"></span> </button> </th>
 
               </tr>
 				<?php endforeach;
         ?>
-
+			@endif
 	</tbody>
 </table>
 </div>
@@ -46,69 +52,84 @@
 <!-- Modal -->
  <div class = "modal fade" id = "myModal2" tabindex = "-1" role = "dialog"
    aria-labelledby = "myModalLabel" aria-hidden = "true">
-
    <div class = "modal-dialog">
       <div class = "modal-content">
-
          <div class = "modal-header">
             <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
                   &times;
             </button>
-
             <h4 class = "modal-title" id = "myModalLabel">
-               Modificar cliente
+               Modificar genero
             </h4>
          </div>
          <div class = "modal-body">
-         		<form class="form-horizontal" method="POST" action="modifcli">
-				 <input type="hidden" id="idcli" name="idcli" />
+         		<form class="form-horizontal" method="POST" action="modifgen">
+				 <input type="hidden" id="idgen" name="idgen" />
 				 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-          <label for="ejemplo_email_3" class="col-lg-3 control-label">Nombre</label>
+          <label for="ejemplo_email_3" class="col-lg-3 control-label">Titulo</label>
           <div class="col-lg-9">
-            <input type="text" name="nom_usu"  class="form-control" id="nomcli"
+            <input type="text" name="titulo"  class="form-control" id="titulo"
                    placeholder="Nombre del cliente">
           </div>
         </div>
          <div class="form-group">
-          <label for="ejemplo_password_3" class="col-lg-3 control-label">Apellido paterno</label>
+          <label for="ejemplo_password_3" class="col-lg-3 control-label">Activo</label>
           <div class="col-lg-9">
-            <input type="text" name="apa_usu"  class="form-control" id="apacli"
-                   placeholder="Apellido paterno">
+            <select class="form-control" name="active" id="active">
+							<option value="1">SI</option>
+							<option value="2">NO</option>
+            </select>
           </div>
           </div>
-          <div class="form-group">
-          <label for="ejemplo_email_3" class="col-lg-3 control-label">Apellido materno</label>
-          <div class="col-lg-9">
-            <input type="text" name="ama_usu" class="form-control"  id="amacli"
-                   placeholder="Apellido materno">
-          </div>
-          </div>
-          <div class="form-group">
-          <label for="ejemplo_email_3" class="col-lg-3 control-label">Telefono</label>
-          <div class="col-lg-9">
-            <input type="tel"  name="tel_usu" class="form-control" id="telcli"
-                   placeholder="Telefono del cliente">
+         <input type="hidden" id="idalm">
+         <div class = "modal-footer" style="border-top: 0;">
+            <button type = "button" class = "btn btn-danger" data-dismiss = "modal"><span class="glyphicon glyphicon-remove" style="font-size: 10px;"></span>
+               Cancelar
+            </button>
 
-          </div>
-          </div>
-          <div class="form-group">
-          <label for="ejemplo_email_3" class="col-lg-3 control-label">E-mail</label>
+            <button type = "submit" class = "btn btn-primary"><span style="font-size: 10px;" class="glyphicon glyphicon-plus"></span>
+               Registrar
+            </button>
+         </div>
+         </form>
+      </div><!-- /.modal-content -->
+   </div><!-- /.modal-dialog -->
+</div>
+</div><!-- /.modal -->
+<!-- Modal -->
+ <div class = "modal fade" id = "myModal" tabindex = "-1" role = "dialog"
+   aria-labelledby = "myModalLabel" aria-hidden = "true">
+   <div class = "modal-dialog">
+      <div class = "modal-content">
+         <div class = "modal-header">
+            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
+                  &times;
+            </button>
+            <h4 class = "modal-title" id = "myModalLabel">
+               Registrar genero
+            </h4>
+         </div>
+         <div class = "modal-body">
+         		<form class="form-horizontal" method="POST" action="registrargen">
+				 <input type="hidden" id="idgen" name="idgen" />
+				 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+          <label for="ejemplo_email_3" class="col-lg-3 control-label">Titulo</label>
           <div class="col-lg-9">
-            <input type="email" name="ema_usu"  class="form-control" id="emacli"
-                   placeholder="Direccion e-mail del cliente">
-
+            <input type="text" name="titulo"  class="form-control" id="titulo"
+                   placeholder="Titulo del genero">
           </div>
-          </div>
-
-          <div class="form-group">
-          <label for="ejemplo_email_3" class="col-lg-3 control-label">Direccion</label>
+        </div>
+         <div class="form-group">
+          <label for="ejemplo_password_3" class="col-lg-3 control-label">Activo</label>
           <div class="col-lg-9">
-          <textarea type="text" name="dir_usu" class="form-control" id="dircli"
-                   placeholder="Direccion de cliente"></textarea>
+            <select class="form-control" name="active" id="active">
+							<option value="1">SI</option>
+							<option value="2">NO</option>
+            </select>
           </div>
           </div>
-
          <input type="hidden" id="idalm">
          <div class = "modal-footer" style="border-top: 0;">
             <button type = "button" class = "btn btn-danger" data-dismiss = "modal"><span class="glyphicon glyphicon-remove" style="font-size: 10px;"></span>
@@ -125,7 +146,7 @@
 
 </div><!-- /.modal -->
   </div>
-</div>
+
 <div class = "modal fade" id = "myModal3" tabindex = "-1" role = "dialog"
    aria-labelledby = "myModalLabel" aria-hidden = "true">
 
@@ -140,7 +161,7 @@
                Confirmar eliminacion
             </h4>
          </div>
-         <form action="elicli" method="POST">
+         <form action="eligen" method="POST">
          <div class = "modal-body">
          <input type="hidden" id="ideli" name="ideli">
             <div class=" ">Desea eliminar el elemento?</div>
@@ -162,58 +183,17 @@
 </div><!-- /.modal -->
   </div>
 </div>
-<div class = "modal fade" id = "myModal4" tabindex = "-1" role = "dialog"
-   aria-labelledby = "myModalLabel" aria-hidden = "true">
 
-   <div class = "modal-dialog">
-      <div class = "modal-content">
-
-         <div class = "modal-header">
-            <button type = "button" class = "close" data-dismiss = "modal" aria-hidden = "true">
-                  &times;
-            </button>
-            <h4 class = "modal-title" id = "myModalLabel">
-               Cambio de contraseña de usuario
-            </h4>
-         </div>
-         <form action="mcousu" method="POST">
-         <div class = "modal-body">
-         <input type="hidden" id="idcon" name="idcon">
-         <div class="form-group">
-              <label class="col-lg-3 control-label">Nueva contraseña :</label>
-            <div class="col-md-8">
-               <input type="password" required class="form-control" name="conusu" id="conusu">
-            </div>
-            </div>
-         <div class = "modal-footer" style="border-top: none;">
-            <button type = "button" class = "btn btn-danger" data-dismiss = "modal"><span class="glyphicon glyphicon-remove" style="font-size: 10px; "></span>
-               Cancelar
-            </button>
-
-            <button type = "submit" class = "btn btn-primary"> <span style="font-size: 10px; " class="glyphicon glyphicon-plus"></span>
-               Aceptar
-            </button>
-         </div>
-         </div>
-         </form>
-      </div><!-- /.modal-content -->
-   </div><!-- /.modal-dialog -->
-
-</div><!-- /.modal -->
   </div>
 </div>
 	@stop
 @section('script')
 	<script type="text/javascript">
-		function modificar(data1,data2,data3,data4,data5,data6,data7)
+		function modificar(data1,data2,data3)
 		{
-			$('#nomcli').val(data1);
-	    $('#apacli').val(data2);
-	    $('#amacli').val(data3);
-	    $('#telcli').val(data4);
-	    $('#emacli').val(data5);
-	    $('#dircli').val(data6);
-			$('#idcli').val(data7);
+			$('#titulo').val(data1);
+			$("#active option[value="+data2+"]").prop("selected","selected");
+			$('#idgen').val(data3);
 		}
 			function eliminar(data)
 		{

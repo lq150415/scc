@@ -34,9 +34,13 @@ class MaterialController extends Controller
         $genero=Genero::get();
         return view('materialprog')->with('procedencias',$procedencias)->with('archivos',$archivo)->with('categorias',$categorias)->with('generos',$genero);
     }
-    public function index2()
+    public function publi()
     {
-        return view('materialsumma');
+        $categorias=Categoria::get();
+        $archivo=Archivo::get();
+        $procedencias=Procedencia::get();
+        $genero=Genero::get();
+        return view('publicidad')->with('procedencias',$procedencias)->with('archivos',$archivo)->with('categorias',$categorias)->with('generos',$genero);
     }
     /**
      * Show the form for creating a new resource.

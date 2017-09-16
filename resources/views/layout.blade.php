@@ -134,11 +134,16 @@
             <li><a href="{{ url('adminpaq')}}">· Administrar paquetes</a></li>
             <li><a href="{{ url('admincat')}}">· Administrar categorias</a></li>
             <li><a href="{{ url('adminmat')}}">· Administrar material</a></li>
+            <li><a href="{{ url('adminpub')}}">· Administrar publicidad</a></li>
             <li><a href="{{ url('adminpen')}}">· Pendientes</a></li>
           </ul>
         </li>
         <li class="">
           <a href="{{url('material')}}" >Registrar material </span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-dashboard colorspan"></span></a>
+
+        </li>
+        <li class="">
+          <a href="{{url('publicidad')}}" >Registrar publicidad </span><span style="font-size:16px;" class="pull-right hidden-xs showopacity glyphicon glyphicon-bullhorn colorspan"></span></a>
 
         </li>
       <li class="dropdown">

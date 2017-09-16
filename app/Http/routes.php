@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('registrarclientes','VentasController@cliente');
 	Route::post('datos_pro','VentasController@datos_pro');
 	Route::get('pdf','VentasController@pdf');
+	Route::get('publicidad','MaterialController@publi');
 	Route::get('pdfgeneral','VentasController@pdfgeneral');
 	Route::get('graficos','VentasController@graficos');
 	Route::get('grafcol','VentasController@graficos3');
@@ -57,9 +58,17 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('admincli',['as'=>'admincli','uses'=>'AdministrarController@indexcli']);
 	Route::get('adminven',['as'=>'adminven','uses'=>'AdministrarController@indexven']);
 	Route::get('adminpaq',['as'=>'adminpaq','uses'=>'AdministrarController@indexpaq']);
+	Route::get('adminpub',['as'=>'adminpub','uses'=>'AdministrarController@indexpub']);
+	Route::get('admingen',['as'=>'admingen','uses'=>'AdministrarController@indexgen']);
+	Route::get('adminart',['as'=>'adminart','uses'=>'AdministrarController@indexart']);
+	Route::get('adminmat',['as'=>'adminmat','uses'=>'AdministrarController@indexmat']);
 
 	Route::post('modifcat','AdministrarController@modifcat');
 	Route::post('elicat','AdministrarController@elicat');
+
+	Route::post('modifgen','AdministrarController@modifgen');
+	Route::post('eligen','AdministrarController@eligen');
+	Route::post('registrargen','AdministrarController@registrargen');
 
 	Route::post('modifcli','AdministrarController@modifcli');
 	Route::post('elicli','AdministrarController@elicli');

@@ -138,7 +138,6 @@ return [
         Illuminate\View\ViewServiceProvider::class,
          'Elibyy\TCPDF\ServiceProvider',
          Aivo\Highchart\HighchartServiceProvider::class,
-         Jenssegers\Date\DateServiceProvider::class,
 
         /*
          * Application Service Providers...
